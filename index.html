@@ -100,14 +100,6 @@
       margin-bottom: 10px;
       font-size: 18px;
     }
-    .product-card p.offer {
-      background-color: #004d40;
-      color: white;
-      padding: 5px 10px;
-      border-radius: 15px;
-      font-size: 14px;
-      margin-bottom: 10px;
-    }
     .product-card button {
       background-color: #008080;
       color: white;
@@ -253,4 +245,80 @@
       <label for="phone">رقم الهاتف (واتساب):</label>
       <input type="tel" id="phone" name="phone" pattern="[0-9]{10,12}" placeholder="مثلاً 07881234567" required />
 
-      <label for="province">المحافظة:</label
+      <label for="province">المحافظة:</label>
+      <select id="province" name="province" required>
+        <option value="">اختر المحافظة</option>
+        <option value="بغداد">بغداد</option>
+        <option value="البصرة">البصرة</option>
+        <option value="نينوى">نينوى</option>
+        <option value="الأنبار">الأنبار</option>
+        <option value="كربلاء">كربلاء</option>
+        <option value="النجف">النجف</option>
+        <option value="أربيل">أربيل</option>
+        <option value="دهوك">دهوك</option>
+        <option value="السليمانية">السليمانية</option>
+        <option value="ديالى">ديالى</option>
+        <option value="كركوك">كركوك</option>
+        <option value="صلاح الدين">صلاح الدين</option>
+        <option value="ميسان">ميسان</option>
+        <option value="واسط">واسط</option>
+        <option value="ذي قار">ذي قار</option>
+        <option value="بابل">بابل</option>
+        <option value="الديوانية">الديوانية</option>
+        <option value="المثنى">المثنى</option>
+        <option value="البصرة">البصرة</option>
+      </select>
+
+      <label for="area">المنطقة:</label>
+      <input type="text" id="area" name="area" required />
+
+      <label for="product">المنتج:</label>
+      <input type="text" id="product" name="product" readonly required />
+
+      <button type="submit">إرسال الطلب عبر واتساب</button>
+    </form>
+  </section>
+</main>
+
+<footer>
+  تابعونا على الإنستغرام: 
+  <a href="https://www.instagram.com/remas_beauty1" target="_blank" rel="noopener noreferrer">@remas_beauty1</a>
+</footer>
+
+<script>
+  function selectProduct(name) {
+    document.getElementById('product').value = name;
+    document.getElementById('product').scrollIntoView({behavior: 'smooth'});
+  }
+
+  document.getElementById('orderForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const province = document.getElementById('province').value;
+    const area = document.getElementById('area').value.trim();
+    const product = document.getElementById('product').value.trim();
+
+    if(!product){
+      alert("يرجى اختيار المنتج أولاً من قسم المنتجات.");
+      return;
+    }
+
+    const message =
+      `طلب من موقع ريماس للصحة والجمال:%0A` +
+      `الاسم: ${name}%0A` +
+      `رقم الهاتف: ${phone}%0A` +
+      `المحافظة: ${province}%0A` +
+      `المنطقة: ${area}%0A` +
+      `المنتج: ${product}`;
+
+    const whatsappNumber = "9647881556110";
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+    window.open(whatsappURL, '_blank');
+  });
+</script>
+
+</body>
+</html>
