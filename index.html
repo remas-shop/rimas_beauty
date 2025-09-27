@@ -4,243 +4,189 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ريماس للصحة والجمال</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo&family=Tajawal&display=swap" rel="stylesheet" />
   <style>
-    /* Reset */
+    @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
     * {
-      margin: 0; padding: 0; box-sizing: border-box;
+      box-sizing: border-box;
     }
     body {
-      font-family: 'Tajawal', 'Cairo', sans-serif;
+      font-family: 'Cairo', sans-serif;
+      margin: 0; padding: 0;
       background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
       background-size: cover;
       color: #004d40;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      line-height: 1.6;
-      padding: 20px;
     }
     header {
-      background: rgba(0, 77, 64, 0.85);
-      padding: 10px 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 12px #00251a;
+      background-color: #008080cc;
       display: flex;
       align-items: center;
-      gap: 15px;
-      margin-bottom: 25px;
+      justify-content: space-between;
+      padding: 10px 20px;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
     header img {
-      height: 60px;
-      border-radius: 8px;
-      box-shadow: 0 0 8px #003322;
+      height: 50px;
     }
     header h1 {
-      font-size: 1.9rem;
-      color: #a7ffeb;
-      text-shadow: 1px 1px 4px #003322;
+      margin: 0;
+      font-weight: 700;
+      font-size: 24px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 15px;
+      font-weight: 600;
+      font-size: 18px;
+    }
+    nav a:hover {
+      text-decoration: underline;
     }
     main {
-      background: rgba(255, 255, 255, 0.85);
-      padding: 25px;
-      border-radius: 12px;
-      max-width: 900px;
-      margin: 0 auto;
-      box-shadow: 0 0 18px rgba(0,0,0,0.15);
+      max-width: 1000px;
+      margin: 20px auto;
+      background-color: #ffffffcc;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
     }
     h2 {
-      color: #00796b;
-      margin-bottom: 18px;
       text-align: center;
-      text-shadow: 1px 1px 3px #004d40;
+      color: #00695c;
+      margin-bottom: 10px;
     }
-    /* المنتجات */
+    .hero-text {
+      text-align: center;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 30px;
+      color: #004d40;
+    }
     .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
       gap: 20px;
-      margin-bottom: 35px;
+      margin-bottom: 30px;
     }
-    .product {
-      background: #e0f7f7;
-      border-radius: 10px;
+    .product-card {
+      background: #e0f2f1;
+      border-radius: 8px;
       padding: 15px;
-      box-shadow: 0 4px 8px rgb(0 77 64 / 0.3);
+      width: 280px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      transition: transform 0.3s ease;
     }
-    .product:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 20px rgb(0 77 64 / 0.5);
-    }
-    .product img {
-      max-width: 150px;
-      margin-bottom: 12px;
-      border-radius: 6px;
-      box-shadow: 0 0 8px #004d40;
-      object-fit: contain;
-      background: white;
-      padding: 5px;
-    }
-    .product h3 {
-      color: #004d40;
-      margin-bottom: 8px;
-      font-weight: 700;
-      font-size: 1.3rem;
-    }
-    .product p.price {
-      color: #00796b;
-      font-weight: 700;
-      font-size: 1.1rem;
-      margin-bottom: 6px;
-    }
-    /* العروض */
-    .offers {
-      background: #004d40;
-      color: #a7ffeb;
-      border-radius: 10px;
-      padding: 15px 20px;
-      box-shadow: 0 0 15px #00251a;
-      margin-bottom: 40px;
-    }
-    .offers h3 {
-      margin-bottom: 12px;
-      font-size: 1.4rem;
-      text-align: center;
-      text-shadow: 1px 1px 5px #001a0f;
-    }
-    .offers ul {
-      list-style-type: none;
-      font-weight: 600;
-      font-size: 1.1rem;
-      line-height: 1.5;
-      padding-left: 0;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    .offers ul li {
-      margin: 8px 0;
-      background: rgba(167, 255, 235, 0.15);
-      border-radius: 6px;
-      padding: 8px 12px;
-      box-shadow: inset 0 0 5px #a7ffeb;
-    }
-    /* العبارات التحفيزية */
-    .motivational {
-      text-align: center;
-      margin-bottom: 40px;
-      background: rgba(0, 77, 64, 0.7);
-      padding: 15px 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 14px #00251a;
-    }
-    .motivational h3 {
-      font-size: 1.7rem;
-      color: #e0f7f7;
-      text-shadow: 1px 1px 6px #004d40;
+    .product-card img {
+      max-width: 100%;
+      border-radius: 8px;
       margin-bottom: 10px;
+      height: 180px;
+      object-fit: contain;
+    }
+    .product-card h3 {
+      margin: 10px 0 5px;
+      color: #004d40;
+    }
+    .product-card p.price {
+      font-weight: bold;
+      color: #00796b;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+    .product-card p.offer {
+      background-color: #004d40;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    .product-card button {
+      background-color: #008080;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
       font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
-    .motivational p {
-      color: #a7ffeb;
-      font-weight: 600;
-      font-size: 1.2rem;
+    .product-card button:hover {
+      background-color: #004d40;
     }
-    /* نموذج الطلب */
     form {
-      max-width: 600px;
-      margin: 0 auto 40px;
-      background: #e0f7f7;
-      padding: 20px 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,77,64,0.2);
+      max-width: 500px;
+      margin: 0 auto 30px;
+      background: #b2dfdbcc;
+      padding: 20px;
+      border-radius: 10px;
     }
     form h2 {
       margin-bottom: 15px;
       color: #004d40;
-      font-weight: 700;
-      text-align: center;
     }
-    label {
+    form label {
       display: block;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
       font-weight: 600;
-      color: #004d40;
     }
-    input, select {
+    form input, form select {
       width: 100%;
-      padding: 8px 10px;
+      padding: 10px;
       margin-bottom: 15px;
-      border: 2px solid #004d40;
-      border-radius: 8px;
-      font-size: 1rem;
-      transition: border-color 0.3s ease;
+      border: 1px solid #004d40;
+      border-radius: 5px;
+      font-size: 16px;
+      direction: rtl;
     }
-    input:focus, select:focus {
-      border-color: #00bfa5;
-      outline: none;
-      box-shadow: 0 0 6px #00bfa5;
-    }
-    button {
-      background-color: #004d40;
-      color: #a7ffeb;
+    form button {
+      width: 100%;
+      background-color: #00695c;
+      color: white;
       border: none;
-      padding: 12px 20px;
-      font-size: 1.2rem;
+      padding: 12px;
+      font-size: 18px;
       font-weight: 700;
-      border-radius: 10px;
       cursor: pointer;
-      width: 100%;
+      border-radius: 5px;
       transition: background-color 0.3s ease;
-      box-shadow: 0 4px 10px #00251a;
     }
-    button:hover {
-      background-color: #00796b;
+    form button:hover {
+      background-color: #004d40;
     }
-    /* الفوتر */
     footer {
-      width: 100%;
-      background: rgba(0, 77, 64, 0.85);
-      padding: 15px 20px;
-      color: #a7ffeb;
       text-align: center;
-      font-weight: 600;
-      box-shadow: 0 -2px 8px rgba(0,0,0,0.3);
-      margin-top: auto;
+      padding: 15px;
+      background-color: #008080cc;
+      color: white;
     }
     footer a {
-      color: #e0f7f7;
+      color: #a7ffeb;
       text-decoration: none;
       font-weight: 700;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+      margin-left: 5px;
     }
     footer a:hover {
-      color: #b2dfdb;
+      text-decoration: underline;
     }
-    /* Responsive */
-    @media (max-width: 600px) {
-      body {
-        padding: 10px;
+    @media (max-width: 650px) {
+      .products {
+        flex-direction: column;
+        align-items: center;
       }
       header {
         flex-direction: column;
         align-items: center;
       }
-      header h1 {
-        font-size: 1.5rem;
-      }
-      .products {
-        grid-template-columns: 1fr;
-      }
-      form {
-        padding: 15px;
+      nav {
+        margin-top: 10px;
       }
     }
   </style>
@@ -248,142 +194,130 @@
 <body>
 
 <header>
-  <img src="https://i.ibb.co/jvG3KHxD/logo.png" alt="شعار ريماس للصحة والجمال" />
+  <img src="https://i.ibb.co/jvG3KHxD/logo.png" alt="شعار ريماس" />
   <h1>ريماس للصحة والجمال</h1>
+  <nav>
+    <a href="#products">منتجات</a>
+    <a href="#offers">العروض</a>
+    <a href="#order">اطلب الآن</a>
+  </nav>
 </header>
 
 <main>
+  <div class="hero-text">
+    تخلص من القمل والبيوض بجلسة واحدة! عروض خاصة للسوق العراقي فقط
+  </div>
 
-  <section class="motivational" aria-label="عبارات تحفيزية">
-    <h3>تخلص من القمل والبيوض بجلسة واحدة فقط!</h3>
-    <p>منتجاتنا الطبيعية آمنة وفعالة للعناية بصحة شعركم وجماله.</p>
+  <section id="products">
+    <h2>منتجاتنا</h2>
+    <div class="products">
+      <div class="product-card" data-product="بكج المعالجة الكامل">
+        <img src="https://i.ibb.co/whLBppML/package.png" alt="بكج المعالجة الكامل" />
+        <h3>بكج المعالجة الكامل</h3>
+        <p class="price">20,000 دينار عراقي</p>
+        <p>المشط المغناطيسي + معالج اليانسون</p>
+        <button onclick="selectProduct('بكج المعالجة الكامل')">اختيار المنتج</button>
+      </div>
+
+      <div class="product-card" data-product="المشط المغناطيسي">
+        <img src="https://i.ibb.co/pjXSTKnK/combs.png" alt="المشط المغناطيسي" />
+        <h3>المشط المغناطيسي</h3>
+        <p class="price">15,000 دينار عراقي</p>
+        <button onclick="selectProduct('المشط المغناطيسي')">اختيار المنتج</button>
+      </div>
+
+      <div class="product-card" data-product="معالج اليانسون">
+        <img src="https://i.ibb.co/3YGr99Ym/yansoon.png" alt="معالج اليانسون" />
+        <h3>معالج اليانسون</h3>
+        <p class="price">13,000 دينار عراقي</p>
+        <button onclick="selectProduct('معالج اليانسون')">اختيار المنتج</button>
+      </div>
+    </div>
   </section>
 
-  <section class="products" aria-label="منتجات ريماس">
-    <!-- بكج المعالجة الكامل -->
-    <article class="product" aria-labelledby="pkg-full-title">
-      <img src="https://i.ibb.co/whLBppML/package.png" alt="بكج المعالجة الكامل" />
-      <h3 id="pkg-full-title">بكج المعالجة الكامل</h3>
-      <p class="price">السعر: 20,000 د.ع</p>
-      <p>يشمل المشط المغناطيسي ومعالج اليانسون</p>
-    </article>
-
-    <!-- المشط المغناطيسي -->
-    <article class="product" aria-labelledby="mag-comb-title">
-      <img src="https://i.ibb.co/pjXSTKnK/comb.png" alt="المشط المغناطيسي" />
-      <h3 id="mag-comb-title">المشط المغناطيسي</h3>
-      <p class="price">السعر: 15,000 د.ع</p>
-    </article>
-
-    <!-- معالج اليانسون -->
-    <article class="product" aria-labelledby="anise-treatment-title">
-      <img src="https://i.ibb.co/3YGr99Ym/anise.png" alt="معالج اليانسون" />
-      <h3 id="anise-treatment-title">معالج اليانسون</h3>
-      <p class="price">السعر: 13,000 د.ع</p>
-    </article>
-  </section>
-
-  <section class="offers" aria-label="عروض خاصة">
-    <h3>عروضنا الخاصة</h3>
+  <section id="offers">
+    <h2>العروض الخاصة</h2>
     <ul>
-      <li>اشتري 2 معالج يانسون بسعر 25,000 د.ع والثالث مجانا</li>
-      <li>اشتري 2 بكج المعالجة الكامل واحصل على معالج يانسون مجانا</li>
-      <li>سعر المشطين فقط 25,000 د.ع (وفر 5,000 د.ع)</li>
+      <li>اشترِ 2 معالج اليانسون بـ 25,000 دينار واحصل على الثالث مجاناً.</li>
+      <li>اشترِ 2 بكج المعالجة الكامل بـ 40,000 دينار واحصل على معالج اليانسون مجاناً.</li>
+      <li>شراء 2 مشط مغناطيسي بسعر 25,000 دينار عراقي.</li>
     </ul>
   </section>
 
-  <section aria-label="نموذج طلب المنتج">
+  <section id="order">
+    <h2>اطلب الآن</h2>
     <form id="orderForm">
-      <h2>اطلب منتجك الآن</h2>
-
       <label for="name">الاسم الكامل:</label>
-      <input type="text" id="name" name="name" required placeholder="اكتب اسمك هنا" />
+      <input type="text" id="name" name="name" required />
 
-      <label for="phone">رقم الهاتف:</label>
-      <input type="tel" id="phone" name="phone" required placeholder="مثال: 009647881556110" pattern="^009647[0-9]{8}$" title="يجب أن يكون رقم الهاتف بالشكل: 009647xxxxxxxx" />
+      <label for="phone">رقم الهاتف (واتساب):</label>
+      <input type="tel" id="phone" name="phone" pattern="[0-9]{10,12}" placeholder="مثلاً 07881234567" required />
 
       <label for="province">المحافظة:</label>
       <select id="province" name="province" required>
-        <option value="" disabled selected>اختر المحافظة</option>
-        <option>بغداد</option>
-        <option>البصرة</option>
-        <option>نينوى</option>
-        <option>ديالى</option>
-        <option>كربلاء</option>
-        <option>صلاح الدين</option>
-        <option>الديوانية</option>
-        <option>المثنى</option>
-        <option>ميسان</option>
-        <option>الأنبار</option>
-        <option>واسط</option>
-        <option>النجف</option>
-        <option>بابل</option>
-        <option>ذي قار</option>
+        <option value="">اختر المحافظة</option>
+        <option value="بغداد">بغداد</option>
+        <option value="البصرة">البصرة</option>
+        <option value="النجف">النجف</option>
+        <option value="كربلاء">كربلاء</option>
+        <option value="بابل">بابل</option>
+        <option value="ديالى">ديالى</option>
+        <option value="السليمانية">السليمانية</option>
+        <option value="أربيل">أربيل</option>
+        <option value="الموصل">الموصل</option>
       </select>
 
       <label for="area">المنطقة:</label>
-      <input type="text" id="area" name="area" required placeholder="اكتب اسم المنطقة" />
+      <input type="text" id="area" name="area" required />
 
-      <label for="product">اختر المنتج:</label>
-      <select id="product" name="product" required>
-        <option value="" disabled selected>اختر المنتج</option>
-        <option value="بكج المعالجة الكامل - 20,000 د.ع">بكج المعالجة الكامل - 20,000 د.ع</option>
-        <option value="المشط المغناطيسي - 15,000 د.ع">المشط المغناطيسي - 15,000 د.ع</option>
-        <option value="المشطين - 25,000 د.ع">المشطين - 25,000 د.ع</option>
-        <option value="معالج اليانسون - 13,000 د.ع">معالج اليانسون - 13,000 د.ع</option>
-        <option value="عرض خاص: 2 معالج يانسون والثالث مجانا - 25,000 د.ع">عرض خاص: 2 معالج يانسون والثالث مجانا - 25,000 د.ع</option>
-        <option value="عرض خاص: 2 بكج والمعالج مجانا">عرض خاص: 2 بكج والمعالج مجانا</option>
-      </select>
+      <label for="product">المنتج:</label>
+      <input type="text" id="product" name="product" readonly required />
 
-      <button type="submit">أرسل الطلب عبر واتساب</button>
+      <button type="submit">إرسال الطلب عبر واتساب</button>
     </form>
   </section>
-
 </main>
 
 <footer>
-  <p>
-    تابعنا على 
-    <a href="https://instagram.com/remas_beauty1" target="_blank" rel="noopener" aria-label="إنستغرام ريماس للصحة والجمال">
-      إنستغرام
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#e0f7f7" viewBox="0 0 24 24" style="vertical-align: middle;">
-        <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm4.25 3.75a4.75 4.75 0 1 1 0 9.5 4.75 4.75 0 0 1 0-9.5zm0 1.5a3.25 3.25 0 1 0 0 6.5 3.25 3.25 0 0 0 0-6.5zm5.5-.75a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-      </svg>
-    </a>
-  </p>
+  تابعونا على الإنستغرام: 
+  <a href="https://www.instagram.com/remas_beauty1" target="_blank" rel="noopener noreferrer">@remas_beauty1</a>
 </footer>
 
 <script>
-  const form = document.getElementById('orderForm');
-  form.addEventListener('submit', function(e) {
+  // دالة لاختيار المنتج وتعبئة الحقل تلقائياً
+  function selectProduct(name) {
+    document.getElementById('product').value = name;
+    document.getElementById('product').scrollIntoView({behavior: 'smooth'});
+  }
+
+  // إرسال الطلب عبر واتساب مع تفاصيل الطلب
+  document.getElementById('orderForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
-    // جلب القيم
     const name = document.getElementById('name').value.trim();
     const phone = document.getElementById('phone').value.trim();
     const province = document.getElementById('province').value;
     const area = document.getElementById('area').value.trim();
-    const product = document.getElementById('product').value;
+    const product = document.getElementById('product').value.trim();
 
-    if (!name || !phone || !province || !area || !product) {
-      alert('يرجى تعبئة جميع الحقول بشكل صحيح.');
+    if(!product){
+      alert("يرجى اختيار المنتج أولاً من قسم المنتجات.");
       return;
     }
 
-    // صياغة رسالة الطلب
-    let message = `طلب من موقع ريماس للصحة والجمال:%0A`;
-    message += `الاسم: ${name}%0A`;
-    message += `الهاتف: ${phone}%0A`;
-    message += `المحافظة: ${province}%0A`;
-    message += `المنطقة: ${area}%0A`;
-    message += `المنتج: ${product}`;
+    const message =
+      `طلب من موقع ريماس للصحة والجمال:%0A` +
+      `الاسم: ${name}%0A` +
+      `رقم الهاتف: ${phone}%0A` +
+      `المحافظة: ${province}%0A` +
+      `المنطقة: ${area}%0A` +
+      `المنتج: ${product}`;
 
-    // رقم واتساب خاص بك (عدل الرقم هنا)
-    const whatsappNumber = "9647881556110"; // بدون بادئة 00 أو +
+    // رقم واتساب الخاص بك بدون 00 أو +
+    const whatsappNumber = "9647881556110";
 
     const whatsappURL = `https://wa.me/${whatsappNumber}?text=${message}`;
 
-    // فتح واتساب
     window.open(whatsappURL, '_blank');
   });
 </script>
