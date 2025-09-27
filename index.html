@@ -12,10 +12,9 @@
     body {
       font-family: 'Cairo', sans-serif;
       margin: 0; padding: 0;
-      color: #004d40;
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
       background-size: cover;
-      background-position: center center;
-      transition: background-image 1.5s ease-in-out;
+      color: #004d40;
     }
     header {
       background-color: #008080cc;
@@ -266,16 +265,6 @@
         <option value="السليمانية">السليمانية</option>
         <option value="أربيل">أربيل</option>
         <option value="الموصل">الموصل</option>
-        <option value="صلاح الدين">صلاح الدين</option>
-        <option value="نينوى">نينوى</option>
-        <option value="ذي قار">ذي قار</option>
-        <option value="القادسية">القادسية</option>
-        <option value="المثنى">المثنى</option>
-        <option value="واسط">واسط</option>
-        <option value="حلبجة">حلبجة</option>
-        <option value="دهوك">دهوك</option>
-        <option value="الأنبار">الأنبار</option>
-        <option value="النجف الأشرف">النجف الأشرف</option>
       </select>
 
       <label for="area">المنطقة:</label>
@@ -301,37 +290,37 @@
     document.getElementById('product').scrollIntoView({behavior: 'smooth'});
   }
 
-  // تغيير الخلفية تلقائياً - صور خلفيات جذابة
-  const backgrounds = [
-    'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80',
-    'https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1470&q=80',
-    'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1470&q=80'
-  ];
-
-  let currentBg = 0;
-  function changeBackground() {
-    currentBg = (currentBg + 1) % backgrounds.length;
-    document.body.style.backgroundImage = `url('${backgrounds[currentBg]}')`;
-  }
-  document.body.style.backgroundImage = `url('${backgrounds[0]}')`;
-  setInterval(changeBackground, 7000);
-
-  // إرسال الطلب عبر واتساب مع بيانات النموذج
+  // إرسال الطلب عبر واتساب مع تفاصيل الطلب
   document.getElementById('orderForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
-    const name = encodeURIComponent(document.getElementById('name').value.trim());
-    const phone = encodeURIComponent(document.getElementById('phone').value.trim());
-    const province = encodeURIComponent(document.getElementById('province').value.trim());
-    const area = encodeURIComponent(document.getElementById('area').value.trim());
-    const product = encodeURIComponent(document.getElementById('product').value.trim());
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const province = document.getElementById('province').value;
+    const area = document.getElementById('area').value.trim();
+    const product = document.getElementById('product').value.trim();
 
-    if (!product) {
-      alert('يرجى اختيار المنتج أولاً.');
+    if(!product){
+      alert("يرجى اختيار المنتج أولاً من قسم المنتجات.");
       return;
     }
 
-    const message = 
-      `مرحباً، أود طلب المنتج التالي من موقع ريماس للصحة والجمال:%0A` +
-      `المنتج: ${product}%0A` +
+    const message =
+      `طلب من موقع ريماس للصحة والجمال:%0A` +
       `الاسم: ${name}%0A` +
+      `رقم الهاتف: ${phone}%0A` +
+      `المحافظة: ${province}%0A` +
+      `المنطقة: ${area}%0A` +
+      `المنتج: ${product}`;
+
+    // رقم واتساب الخاص بك بدون 00 أو +
+    const whatsappNumber = "9647881556110";
+
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+    window.open(whatsappURL, '_blank');
+  });
+</script>
+
+</body>
+</html>
