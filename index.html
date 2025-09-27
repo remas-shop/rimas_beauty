@@ -100,6 +100,14 @@
       margin-bottom: 10px;
       font-size: 18px;
     }
+    .product-card p.offer {
+      background-color: #004d40;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
     .product-card button {
       background-color: #008080;
       color: white;
@@ -180,6 +188,52 @@
       nav {
         margin-top: 10px;
       }
+      .offers-grid {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+
+    /* تصميم العروض الجديد */
+    .offers-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .offer-card {
+      background-color: #ffe0b2;
+      border: 2px dashed #ff9800;
+      border-radius: 10px;
+      padding: 20px;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .offer-card:hover {
+      transform: scale(1.03);
+    }
+
+    .offer-card h3 {
+      margin-top: 0;
+      color: #e65100;
+      font-size: 20px;
+    }
+
+    .offer-card p {
+      color: #4e342e;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .price-highlight {
+      color: #d84315;
+      font-weight: bold;
+      font-size: 18px;
     }
   </style>
 </head>
@@ -228,12 +282,21 @@
   </section>
 
   <section id="offers">
-    <h2>العروض الخاصة</h2>
-    <ul>
-      <li>اشترِ 2 معالج اليانسون بـ 25,000 دينار واحصل على الثالث مجاناً.</li>
-      <li>اشترِ 2 بكج المعالجة الكامل بـ 40,000 دينار واحصل على معالج اليانسون مجاناً.</li>
-      <li>شراء 2 مشط مغناطيسي بسعر 25,000 دينار عراقي.</li>
-    </ul>
+    <h2>🎁 العروض الخاصة</h2>
+    <div class="offers-grid">
+      <div class="offer-card">
+        <h3>🎉 عرض اليانسون</h3>
+        <p>اشترِ <strong>2 معالج اليانسون</strong> بـ <span class="price-highlight">25,000 د.ع</span> واحصل على <strong>الثالث مجاناً</strong>!</p>
+      </div>
+      <div class="offer-card">
+        <h3>💥 عرض البكج الكامل</h3>
+        <p>اشترِ <strong>2 بكج معالجة كامل</strong> بـ <span class="price-highlight">40,000 د.ع</span> واحصل على <strong>معالج يانسون مجاناً</strong>!</p>
+      </div>
+      <div class="offer-card">
+        <h3>🔥 عرض الأمشاط</h3>
+        <p>اشترِ <strong>2 مشط مغناطيسي</strong> بـ <span class="price-highlight">25,000 د.ع</span></p>
+      </div>
+    </div>
   </section>
 
   <section id="order">
@@ -250,23 +313,13 @@
         <option value="">اختر المحافظة</option>
         <option value="بغداد">بغداد</option>
         <option value="البصرة">البصرة</option>
-        <option value="نينوى">نينوى</option>
-        <option value="الأنبار">الأنبار</option>
-        <option value="كربلاء">كربلاء</option>
         <option value="النجف">النجف</option>
-        <option value="أربيل">أربيل</option>
-        <option value="دهوك">دهوك</option>
-        <option value="السليمانية">السليمانية</option>
-        <option value="ديالى">ديالى</option>
-        <option value="كركوك">كركوك</option>
-        <option value="صلاح الدين">صلاح الدين</option>
-        <option value="ميسان">ميسان</option>
-        <option value="واسط">واسط</option>
-        <option value="ذي قار">ذي قار</option>
+        <option value="كربلاء">كربلاء</option>
         <option value="بابل">بابل</option>
-        <option value="الديوانية">الديوانية</option>
-        <option value="المثنى">المثنى</option>
-        <option value="البصرة">البصرة</option>
+        <option value="ديالى">ديالى</option>
+        <option value="السليمانية">السليمانية</option>
+        <option value="أربيل">أربيل</option>
+        <option value="الموصل">الموصل</option>
       </select>
 
       <label for="area">المنطقة:</label>
@@ -286,11 +339,13 @@
 </footer>
 
 <script>
+  // دالة لاختيار المنتج وتعبئة الحقل تلقائياً
   function selectProduct(name) {
     document.getElementById('product').value = name;
     document.getElementById('product').scrollIntoView({behavior: 'smooth'});
   }
 
+  // إرسال الطلب عبر واتساب مع تفاصيل الطلب
   document.getElementById('orderForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
@@ -313,7 +368,9 @@
       `المنطقة: ${area}%0A` +
       `المنتج: ${product}`;
 
+    // رقم واتساب الخاص بك بدون 00 أو +
     const whatsappNumber = "9647881556110";
+
     const whatsappURL = `https://wa.me/${whatsappNumber}?text=${message}`;
 
     window.open(whatsappURL, '_blank');
