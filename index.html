@@ -1,13 +1,143 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>ريماس للصحة والجمال</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #e0ffff;
+      color: #004d40;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      color: #00695c;
+    }
+    .product, .offer {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 20px auto;
+      max-width: 500px;
+      box-shadow: 0 0 10px #ccc;
+    }
+    .offer {
+      background-color: #00796b;
+      color: white;
+      font-weight: bold;
+    }
+    form {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 20px;
+      max-width: 500px;
+      margin: 20px auto;
+      box-shadow: 0 0 10px #ccc;
+      text-align: right;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #aaa;
+    }
+    button {
+      background-color: #25D366;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 15px;
+      width: 100%;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #1da851;
+    }
+  </style>
 </head>
-<body style="background-color: #40e0d0; color: #004d40; text-align: center; font-family: sans-serif;">
-  <h1>مرحبًا بك في موقع ريماس للصحة والجمال</h1>
-  <p>نحن نقدم منتجات طبيعية لعلاج القمل والبيوض.</p>
-  <p>تواصل معنا على واتساب لطلب المنتجات</p>
-  <a href="https://wa.me/006947881556110" target="_blank" style="font-size: 20px; color: white; background: #25D366; padding: 10px 20px; border-radius: 5px; text-decoration: none;">راسلنا عبر واتساب</a>
+<body>
+
+  <h1>ريماس للصحة والجمال</h1>
+  <p>منتجات طبيعية لعلاج القمل والبيوض</p>
+
+  <div class="product">
+    <h2>📦 بكج المعالجة الكامل</h2>
+    <p>يتكون من المشط المغناطيسي + معالج اليانسون</p>
+    <p><strong>السعر: 20,000 دينار</strong></p>
+  </div>
+
+  <div class="product">
+    <h2>🧲 المشط المغناطيسي</h2>
+    <p><strong>سعر مشط واحد: 15,000 دينار</strong></p>
+    <p><strong>مشطين: 25,000 دينار</strong></p>
+  </div>
+
+  <div class="product">
+    <h2>🌿 معالج اليانسون</h2>
+    <p><strong>سعر العلبة: 13,000 دينار</strong></p>
+  </div>
+
+  <div class="offer">
+    🎁 عرض خاص: اشترِ 2 معالج اليانسون بسعر 25,000 دينار، واحصل على الثالث مجانًا!
+  </div>
+
+  <form id="orderForm">
+    <h2>📝 نموذج الطلب</h2>
+    <label for="name">اسم العميل:</label>
+    <input type="text" id="name" required>
+
+    <label for="phone">رقم الهاتف:</label>
+    <input type="text" id="phone" required>
+
+    <label for="governorate">المحافظة:</label>
+    <input type="text" id="governorate" required>
+
+    <label for="area">المنطقة / العنوان:</label>
+    <input type="text" id="area" required>
+
+    <label for="product">اختر المنتج:</label>
+    <select id="product" required>
+      <option value="">-- اختر منتج --</option>
+      <option value="بكج المعالجة الكامل - 20000 دينار">📦 بكج المعالجة الكامل - 20,000 دينار</option>
+      <option value="2 بكج معالج + هدية - 40000 دينار">📦📦 عرض بكجين + هدية - 40,000 دينار</option>
+      <option value="مشط مغناطيسي - 15000 دينار">🧲 مشط مغناطيسي - 15,000 دينار</option>
+      <option value="مشطين - 25000 دينار">🧲🧲 مشطين - 25,000 دينار</option>
+      <option value="معالج يانسون - 13000 دينار">🌿 معالج يانسون - 13,000 دينار</option>
+      <option value="3 علب معالج (2 + 1 مجانا) - 25000 دينار">🌿🌿🌿 عرض 3 علب معالج - 25,000 دينار</option>
+    </select>
+
+    <button type="button" onclick="sendWhatsApp()">إرسال الطلب عبر واتساب</button>
+  </form>
+
+  <script>
+    function sendWhatsApp() {
+      const name = document.getElementById("name").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const governorate = document.getElementById("governorate").value.trim();
+      const area = document.getElementById("area").value.trim();
+      const product = document.getElementById("product").value;
+
+      if (!name || !phone || !governorate || !area || !product) {
+        alert("يرجى تعبئة جميع الحقول.");
+        return;
+      }
+
+      const message = `طلب جديد من موقع ريماس:\n\n👤 الاسم: ${name}\n📞 الهاتف: ${phone}\n📍 المحافظة: ${governorate}\n🏠 المنطقة: ${area}\n🛒 المنتج المطلوب: ${product}`;
+      const phoneNumber = "006947881556110"; // رقم واتساب بصيغة دولية بدون +
+      const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+      window.open(url, "_blank");
+    }
+  </script>
+
 </body>
-<
+</html>
