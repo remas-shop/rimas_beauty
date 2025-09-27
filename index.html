@@ -1,34 +1,49 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>ريماس للصحة والجمال</title>
   <style>
     body {
       font-family: 'Arial', sans-serif;
-      background-color: #e0ffff;
+      background-image: url('https://i.ibb.co/gbcSF0tG/bg.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
       color: #004d40;
       text-align: center;
       padding: 20px;
+      margin: 0;
     }
     h1 {
       color: #00695c;
     }
+    .logo {
+      width: 150px;
+      margin-bottom: 20px;
+    }
     .product, .offer {
-      background: #ffffff;
+      background: rgba(255, 255, 255, 0.85);
       border-radius: 10px;
       padding: 15px;
       margin: 20px auto;
       max-width: 500px;
       box-shadow: 0 0 10px #ccc;
+      text-align: right;
     }
     .offer {
       background-color: #00796b;
       color: white;
       font-weight: bold;
+      text-align: center;
+    }
+    .product img {
+      max-width: 150px;
+      border-radius: 10px;
+      margin-bottom: 10px;
     }
     form {
-      background: #ffffff;
+      background: rgba(255, 255, 255, 0.85);
       border-radius: 10px;
       padding: 20px;
       max-width: 500px;
@@ -66,22 +81,27 @@
 </head>
 <body>
 
+  <img src="https://i.ibb.co/jvG3KHxD/logo.png" alt="شعار ريماس" class="logo" />
+
   <h1>ريماس للصحة والجمال</h1>
   <p>منتجات طبيعية لعلاج القمل والبيوض</p>
 
   <div class="product">
+    <img src="https://i.ibb.co/whLBppML/package.jpg" alt="بكج المعالجة الكامل" />
     <h2>📦 بكج المعالجة الكامل</h2>
     <p>يتكون من المشط المغناطيسي + معالج اليانسون</p>
     <p><strong>السعر: 20,000 دينار</strong></p>
   </div>
 
   <div class="product">
+    <img src="https://i.ibb.co/pjXSTKnK/comb.jpg" alt="المشط المغناطيسي" />
     <h2>🧲 المشط المغناطيسي</h2>
     <p><strong>سعر مشط واحد: 15,000 دينار</strong></p>
     <p><strong>مشطين: 25,000 دينار</strong></p>
   </div>
 
   <div class="product">
+    <img src="https://i.ibb.co/3YGr99Ym/processor.jpg" alt="معالج اليانسون" />
     <h2>🌿 معالج اليانسون</h2>
     <p><strong>سعر العلبة: 13,000 دينار</strong></p>
   </div>
@@ -93,22 +113,21 @@
   <form id="orderForm">
     <h2>📝 نموذج الطلب</h2>
     <label for="name">اسم العميل:</label>
-    <input type="text" id="name" required>
+    <input type="text" id="name" required />
 
     <label for="phone">رقم الهاتف:</label>
-    <input type="text" id="phone" required>
+    <input type="text" id="phone" required />
 
     <label for="governorate">المحافظة:</label>
-    <input type="text" id="governorate" required>
+    <input type="text" id="governorate" required />
 
     <label for="area">المنطقة / العنوان:</label>
-    <input type="text" id="area" required>
+    <input type="text" id="area" required />
 
     <label for="product">اختر المنتج:</label>
     <select id="product" required>
       <option value="">-- اختر منتج --</option>
       <option value="بكج المعالجة الكامل - 20000 دينار">📦 بكج المعالجة الكامل - 20,000 دينار</option>
-      <option value="2 بكج معالج + هدية - 40000 دينار">📦📦 عرض بكجين + هدية - 40,000 دينار</option>
       <option value="مشط مغناطيسي - 15000 دينار">🧲 مشط مغناطيسي - 15,000 دينار</option>
       <option value="مشطين - 25000 دينار">🧲🧲 مشطين - 25,000 دينار</option>
       <option value="معالج يانسون - 13000 دينار">🌿 معالج يانسون - 13,000 دينار</option>
@@ -131,8 +150,8 @@
         return;
       }
 
-      const message = `طلب جديد من موقع ريماس:\n\n👤 الاسم: ${name}\n📞 الهاتف: ${phone}\n📍 المحافظة: ${governorate}\n🏠 المنطقة: ${area}\n🛒 المنتج المطلوب: ${product}`;
-      const phoneNumber = "006947881556110"; // رقم واتساب بصيغة دولية بدون +
+      const message = `طلب ريماس: الاسم:${name}, الهاتف:${phone}, المحافظة:${governorate}, المنطقة:${area}, المنتج:${product}`;
+      const phoneNumber = "006947881556110";
       const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
       window.open(url, "_blank");
