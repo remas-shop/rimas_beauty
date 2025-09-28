@@ -12,278 +12,267 @@
   body {
     font-family: 'Cairo', sans-serif;
     margin: 0; padding: 0;
-    background: linear-gradient(135deg, #7b92a9, #4a6572);
-    color: #222;
+    background: linear-gradient(135deg, #f9fafb 0%, #d6e4f0 100%);
+    color: #1a1a1a;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
   }
   header {
-    background-color: #1e88e5;
+    background-color: #004d40;
     padding: 15px 20px;
-    color: white;
+    color: #a7ffeb;
     text-align: center;
     position: sticky;
     top: 0;
-    z-index: 1000;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    z-index: 100;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
   }
   header img {
     height: 50px;
-    margin-left: 10px;
+    vertical-align: middle;
   }
   header h1 {
-    font-weight: 800;
-    font-size: 28px;
-    margin: 0;
+    display: inline-block;
+    margin: 0 0 0 10px;
+    font-weight: 900;
+    font-size: 26px;
+    vertical-align: middle;
+    letter-spacing: 2px;
   }
   main {
     max-width: 1000px;
     margin: 25px auto 50px;
-    background-color: #fefefe;
+    background-color: #ffffffdd;
     padding: 25px 30px;
     border-radius: 15px;
-    box-shadow: 0 12px 30px rgba(30, 136, 229, 0.3);
+    box-shadow: 0 0 20px rgba(0,77,64,0.25);
     flex-grow: 1;
   }
   h2 {
     text-align: center;
-    color: #1e88e5;
-    margin-bottom: 20px;
+    color: #00796b;
+    margin-bottom: 15px;
     font-weight: 700;
+    letter-spacing: 1px;
   }
   .products, .offers {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 22px;
+    gap: 25px;
     margin-bottom: 35px;
   }
   .product-card, .offer-card {
-    background: #e3f2fd;
-    border-radius: 15px;
-    padding: 20px 18px 30px;
+    background: #e0f2f1;
+    border-radius: 12px;
+    padding: 20px 15px 25px;
     width: 280px;
-    box-shadow: 0 4px 15px rgba(30, 136, 229, 0.2);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
   }
   .product-card:hover, .offer-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(30, 136, 229, 0.45);
+    box-shadow: 0 12px 25px rgba(0,77,64,0.25);
   }
   .product-card img {
     max-width: 100%;
-    border-radius: 15px;
+    border-radius: 10px;
     margin-bottom: 15px;
     height: 180px;
-    object-fit: cover;
-    filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.15));
+    object-fit: contain;
   }
   .product-card h3, .offer-card h3 {
-    margin: 12px 0 10px;
-    color: #1565c0;
+    margin: 10px 0 10px;
+    color: #004d40;
     font-weight: 700;
-    font-size: 1.2rem;
-    min-height: 54px;
+    font-size: 20px;
+    line-height: 1.2;
   }
   .product-card p.price, .offer-card p.price {
-    font-weight: 800;
-    color: #0d47a1;
-    margin-bottom: 15px;
+    font-weight: 700;
+    color: #00796b;
+    margin-bottom: 12px;
     font-size: 20px;
   }
   input.quantity {
     width: 60px;
     padding: 7px;
     margin-bottom: 15px;
-    font-size: 17px;
-    border: 2px solid #1565c0;
+    font-size: 16px;
+    border: 2px solid #004d40;
     border-radius: 8px;
     text-align: center;
     transition: border-color 0.3s ease;
   }
   input.quantity:focus {
-    border-color: #0d47a1;
+    border-color: #00796b;
     outline: none;
   }
   button {
-    background-color: #1e88e5;
+    background-color: #00796b;
     color: white;
     border: none;
-    padding: 12px 18px;
+    padding: 12px 20px;
     border-radius: 10px;
-    font-weight: 700;
-    cursor: pointer;
+    font-weight: 800;
     font-size: 16px;
-    box-shadow: 0 6px 15px rgba(30, 136, 229, 0.35);
+    cursor: pointer;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     user-select: none;
   }
   button:hover {
-    background-color: #0d47a1;
-    box-shadow: 0 10px 25px rgba(13, 71, 161, 0.6);
+    background-color: #004d40;
+    box-shadow: 0 4px 12px rgba(0,77,64,0.5);
+  }
+  /* مميز للعروض */
+  .offer-card {
+    background: linear-gradient(135deg, #ff8a65 0%, #ff7043 100%);
+    color: white;
+    box-shadow: 0 8px 25px rgba(255,112,67,0.5);
+  }
+  .offer-card h3, .offer-card p.price {
+    color: #fff;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.4);
   }
   #cart {
-    background: #bbdefb;
-    padding: 25px;
-    border-radius: 18px;
-    margin-bottom: 40px;
-    box-shadow: 0 8px 25px rgba(30, 136, 229, 0.35);
+    background: #b2dfdbcc;
+    padding: 20px 15px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 6px 20px rgba(0,77,64,0.2);
   }
   #cart h2 {
-    margin-bottom: 20px;
-    color: #0d47a1;
+    color: #004d40;
+    margin-bottom: 15px;
   }
   #cart table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 17px;
+    background: #e0f2f1;
+    border-radius: 10px;
+    overflow: hidden;
   }
   #cart th, #cart td {
-    border: 1px solid #1565c0;
-    padding: 10px 8px;
+    border: 1px solid #004d40;
+    padding: 10px 12px;
     text-align: center;
-    vertical-align: middle;
+    font-weight: 600;
+    font-size: 16px;
   }
-  #cart th {
-    background-color: #1e88e5;
-    color: white;
-    font-weight: 700;
-  }
-  .remove-btn {
-    background-color: #d32f2f;
-    padding: 6px 10px;
-    border-radius: 7px;
-    font-weight: 700;
+  #cart td button.delete-btn {
+    background: #e53935;
+    padding: 6px 12px;
     font-size: 14px;
-    box-shadow: 0 3px 8px rgba(211, 47, 47, 0.7);
+    border-radius: 8px;
+    box-shadow: none;
+    transition: background-color 0.3s ease;
   }
-  .remove-btn:hover {
-    background-color: #9a0007;
-    box-shadow: 0 6px 15px rgba(154, 0, 7, 0.9);
+  #cart td button.delete-btn:hover {
+    background: #b71c1c;
   }
-  #totalAmount {
-    text-align: right;
+  #total {
     font-size: 20px;
+    color: #00796b;
     font-weight: 800;
-    margin-top: 15px;
-    color: #0d47a1;
   }
   #notification {
     position: fixed;
     top: 15px;
     left: 50%;
     transform: translateX(-50%);
-    background: #1e88e5dd;
+    background: #004d40dd;
     color: #fff;
-    padding: 12px 30px;
+    padding: 14px 30px;
     border-radius: 30px;
-    font-weight: 800;
-    font-size: 18px;
+    font-weight: 700;
+    font-size: 20px;
     display: none;
     z-index: 9999;
-    box-shadow: 0 8px 20px rgba(30, 136, 229, 0.7);
+    box-shadow: 0 5px 20px rgba(0,77,64,0.8);
     user-select: none;
   }
   form {
     max-width: 520px;
     margin: 0 auto 35px;
-    background: #e3f2fdcc;
-    padding: 25px 25px 30px;
-    border-radius: 18px;
-    box-shadow: 0 8px 30px rgba(30, 136, 229, 0.3);
+    background: #b2dfdbcc;
+    padding: 25px 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,77,64,0.3);
+  }
+  form h2 {
+    color: #004d40;
+    margin-bottom: 20px;
+    font-weight: 800;
   }
   form label {
     display: block;
     margin-bottom: 8px;
     font-weight: 700;
-    color: #0d47a1;
     font-size: 16px;
   }
   form input, form select {
     width: 100%;
-    padding: 12px;
-    margin-bottom: 18px;
-    border: 2px solid #1565c0;
-    border-radius: 10px;
-    font-size: 17px;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 2px solid #004d40;
+    border-radius: 12px;
+    font-size: 16px;
     direction: rtl;
     transition: border-color 0.3s ease;
   }
   form input:focus, form select:focus {
-    border-color: #0d47a1;
+    border-color: #00796b;
     outline: none;
   }
-  form button {
-    background-color: #1e88e5;
-    width: 100%;
-    padding: 15px 0;
-    font-size: 19px;
-    font-weight: 900;
-    border-radius: 15px;
-    border: none;
-    cursor: pointer;
+  form button#submitBtn {
+    background-color: #00796b;
     color: white;
-    box-shadow: 0 8px 25px rgba(30, 136, 229, 0.45);
-    transition: background-color 0.3s ease;
-    user-select: none;
+    font-weight: 900;
+    font-size: 18px;
+    padding: 15px;
+    border-radius: 15px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
   }
-  form button:hover {
-    background-color: #0d47a1;
+  form button#submitBtn:hover {
+    background-color: #004d40;
+    box-shadow: 0 5px 15px rgba(0,77,64,0.7);
   }
   footer {
     text-align: center;
-    padding: 20px;
-    background-color: #1e88e5;
-    color: white;
+    padding: 18px;
+    background-color: #004d40;
+    color: #a7ffeb;
     font-weight: 700;
-    box-shadow: 0 -4px 12px rgba(30, 136, 229, 0.5);
+    letter-spacing: 1px;
   }
   footer a {
-    color: #bbdefb;
+    color: #81d4fa;
     text-decoration: none;
     font-weight: 700;
-    margin-left: 6px;
+    margin-left: 8px;
   }
   footer a:hover {
     text-decoration: underline;
   }
-  /* عروض خاصة مميزة */
-  .offer-card {
-    background: linear-gradient(135deg, #ffd54f, #ffb300);
-    color: #3e2723;
-    font-weight: 800;
-    box-shadow: 0 6px 20px rgba(255, 183, 0, 0.7);
-    border: 3px solid #ffa000;
-  }
-  .offer-card h3 {
-    text-shadow: 1.5px 1.5px 2px #5d4037;
-  }
-  .offer-card p.price {
-    color: #bf360c;
-    font-size: 22px;
-    text-shadow: 1px 1px 2px #d84315;
-  }
-  /* Responsive */
   @media (max-width: 650px) {
     .products, .offers {
       flex-direction: column;
       align-items: center;
     }
     main {
-      margin: 15px 15px 40px;
-      padding: 20px;
+      margin: 15px 10px 40px;
+      padding: 20px 15px;
     }
     form {
-      padding: 20px;
-      margin-bottom: 30px;
+      padding: 20px 15px;
     }
   }
 </style>
@@ -293,7 +282,7 @@
 <div id="notification"></div>
 
 <header>
-  <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=50&q=80" alt="شعار ريماس" />
+  <img src="https://i.ibb.co/jvG3KHxD/logo.png" alt="شعار ريماس" />
   <h1>ريماس للصحة والجمال</h1>
 </header>
 
@@ -301,7 +290,7 @@
   <h2>منتجاتنا</h2>
   <div class="products">
     <div class="product-card">
-      <img src="https://images.unsplash.com/photo-1514995669114-9efb3b89939e?auto=format&fit=crop&w=500&q=80" alt="بكج المعالجة الكامل" />
+      <img src="https://i.ibb.co/whLBppML/package.png" alt="بكج المعالجة الكامل" />
       <h3>بكج المعالجة الكامل</h3>
       <p class="price">20000</p>
       <input class="quantity" type="number" value="1" min="1" />
@@ -309,7 +298,7 @@
     </div>
 
     <div class="product-card">
-      <img src="https://images.unsplash.com/photo-1582719478147-0453098a7e6e?auto=format&fit=crop&w=500&q=80" alt="المشط المغناطيسي" />
+      <img src="https://i.ibb.co/pjXSTKnK/combs.png" alt="المشط المغناطيسي" />
       <h3>المشط المغناطيسي</h3>
       <p class="price">15000</p>
       <input class="quantity" type="number" value="1" min="1" />
@@ -317,7 +306,7 @@
     </div>
 
     <div class="product-card">
-      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=500&q=80" alt="معالج اليانسون" />
+      <img src="https://i.ibb.co/3YGr99Ym/yansoon.png" alt="معالج اليانسون" />
       <h3>معالج اليانسون</h3>
       <p class="price">13000</p>
       <input class="quantity" type="number" value="1" min="1" />
@@ -362,16 +351,16 @@
       </thead>
       <tbody></tbody>
     </table>
-    <p id="totalAmount">المجموع الكلي: 0 دينار</p>
+    <p style="text-align:right;font-size:18px;"><strong>المجموع الكلي: <span id="total">0</span> دينار</strong></p>
   </div>
 
   <form id="orderForm" onsubmit="sendOrder(event)">
     <h2>معلومات الزبون</h2>
     <label for="name">الاسم الكامل:</label>
-    <input type="text" id="name" required autocomplete="off" />
+    <input type="text" id="name" required />
 
     <label for="phone">رقم الهاتف (واتساب):</label>
-    <input type="tel" id="phone" required pattern="[0-9]{10,12}" placeholder="مثلاً 07881234567" autocomplete="off" />
+    <input type="tel" id="phone" required pattern="[0-9]{10,12}" placeholder="مثلاً 07881234567" />
 
     <label for="province">المحافظة:</label>
     <select id="province" required>
@@ -397,142 +386,153 @@
       <option>حلبجة</option>
     </select>
 
-    <label for="area">المنطقة / الحي:</label>
-    <input type="text" id="area" required autocomplete="off" />
+    <label for="area">المنطقة:</label>
+    <input type="text" id="area" required />
 
-    <button type="submit">إرسال الطلب</button>
+    <button id="submitBtn" type="submit">إرسال الطلب</button>
   </form>
 </main>
 
 <footer>
-  حقوق © 2025 ريماس للصحة والجمال. كل الحقوق محفوظة.
+  جميع الحقوق محفوظة © 2025
+  <a href="https://wa.me/9647881556110" target="_blank" rel="noopener">تواصل معنا عبر واتساب</a>
 </footer>
 
-<audio id="addSound" src="https://actions.google.com/sounds/v1/cart/add_to_cart.ogg" preload="auto"></audio>
-<audio id="removeSound" src="https://actions.google.com/sounds/v1/cart/remove_from_cart.ogg" preload="auto"></audio>
-<audio id="sendSound" src="https://actions.google.com/sounds/v1/alarms/digital_watch_alarm_long.ogg" preload="auto"></audio>
-
 <script>
-  const cart = [];
-  const cartTableBody = document.querySelector('#cartTable tbody');
-  const totalAmountEl = document.getElementById('totalAmount');
-  const notificationEl = document.getElementById('notification');
+  // صوت الإضافة للسلة
+  const addSound = new Audio('https://actions.google.com/sounds/v1/cart/add_to_cart.ogg');
+  // صوت الحذف من السلة
+  const deleteSound = new Audio('https://actions.google.com/sounds/v1/cart/cart_remove.ogg');
+  // صوت الإرسال
+  const sendSound = new Audio('https://actions.google.com/sounds/v1/cart/checkout_complete.ogg');
 
-  const addSound = document.getElementById('addSound');
-  const removeSound = document.getElementById('removeSound');
-  const sendSound = document.getElementById('sendSound');
+  let cart = [];
 
-  function showNotification(message) {
-    notificationEl.textContent = message;
-    notificationEl.style.display = 'block';
+  function showNotification(msg) {
+    const notification = document.getElementById('notification');
+    notification.textContent = msg;
+    notification.style.display = 'block';
     setTimeout(() => {
-      notificationEl.style.display = 'none';
-    }, 2500);
-  }
-
-  function updateCart() {
-    cartTableBody.innerHTML = '';
-    let total = 0;
-    cart.forEach((item, index) => {
-      const tr = document.createElement('tr');
-
-      const nameTd = document.createElement('td');
-      nameTd.textContent = item.name;
-
-      const qtyTd = document.createElement('td');
-      qtyTd.textContent = item.quantity;
-
-      const priceTd = document.createElement('td');
-      const itemTotal = item.price * item.quantity;
-      priceTd.textContent = itemTotal.toLocaleString() + ' دينار';
-
-      const removeTd = document.createElement('td');
-      const removeBtn = document.createElement('button');
-      removeBtn.textContent = 'حذف';
-      removeBtn.classList.add('remove-btn');
-      removeBtn.onclick = () => {
-        cart.splice(index, 1);
-        updateCart();
-        removeSound.play();
-        showNotification('تم حذف المنتج من السلة');
-      };
-      removeTd.appendChild(removeBtn);
-
-      tr.appendChild(nameTd);
-      tr.appendChild(qtyTd);
-      tr.appendChild(priceTd);
-      tr.appendChild(removeTd);
-
-      cartTableBody.appendChild(tr);
-      total += itemTotal;
-    });
-    totalAmountEl.textContent = `المجموع الكلي: ${total.toLocaleString()} دينار`;
+      notification.style.display = 'none';
+    }, 3500);
   }
 
   function addToCart(name, price, btn) {
-    const productCard = btn.parentElement;
-    const qtyInput = productCard.querySelector('.quantity');
-    let qty = parseInt(qtyInput.value);
-    if (isNaN(qty) || qty < 1) {
-      qty = 1;
-      qtyInput.value = qty;
+    const quantityInput = btn.previousElementSibling;
+    let qty = parseInt(quantityInput.value);
+    if (qty <= 0 || isNaN(qty)) {
+      alert('الرجاء إدخال كمية صحيحة');
+      return;
     }
-    // هل المنتج موجود مسبقاً؟
-    const existingIndex = cart.findIndex(i => i.name === name);
+
+    // تحقق إذا المنتج موجود بالفعل
+    const existingIndex = cart.findIndex(item => item.name === name);
     if (existingIndex > -1) {
       cart[existingIndex].quantity += qty;
     } else {
       cart.push({ name, price, quantity: qty });
     }
-    updateCart();
     addSound.play();
-    showNotification(`تم إضافة "${name}" إلى السلة (${qty})`);
-    qtyInput.value = 1;
+    updateCart();
+    showNotification(`تمت إضافة ${qty} من "${name}" إلى السلة`);
+    quantityInput.value = 1;
   }
 
-  function sendOrder(event) {
-    event.preventDefault();
+  function updateCart() {
+    const tbody = document.querySelector('#cartTable tbody');
+    tbody.innerHTML = '';
+    let total = 0;
+
+    cart.forEach((item, index) => {
+      const tr = document.createElement('tr');
+
+      const tdName = document.createElement('td');
+      tdName.textContent = item.name;
+
+      const tdQty = document.createElement('td');
+      tdQty.textContent = item.quantity;
+
+      const tdPrice = document.createElement('td');
+      const itemTotal = item.price * item.quantity;
+      tdPrice.textContent = itemTotal.toLocaleString();
+
+      const tdDelete = document.createElement('td');
+      const delBtn = document.createElement('button');
+      delBtn.textContent = 'حذف';
+      delBtn.classList.add('delete-btn');
+      delBtn.onclick = () => {
+        cart.splice(index, 1);
+        deleteSound.play();
+        updateCart();
+        showNotification(`تم حذف "${item.name}" من السلة`);
+      };
+      tdDelete.appendChild(delBtn);
+
+      tr.appendChild(tdName);
+      tr.appendChild(tdQty);
+      tr.appendChild(tdPrice);
+      tr.appendChild(tdDelete);
+      tbody.appendChild(tr);
+
+      total += itemTotal;
+    });
+
+    document.getElementById('total').textContent = total.toLocaleString();
+  }
+
+  function sendOrder(e) {
+    e.preventDefault();
+
     if (cart.length === 0) {
-      alert('السلة فارغة! الرجاء إضافة منتجات أولاً.');
+      alert('يرجى إضافة منتجات إلى السلة أولاً');
       return;
     }
+
     const name = document.getElementById('name').value.trim();
-    const phone = document.getElementById('phone').value.trim();
+    let phone = document.getElementById('phone').value.trim();
     const province = document.getElementById('province').value;
     const area = document.getElementById('area').value.trim();
 
     if (!name || !phone || !province || !area) {
-      alert('يرجى ملء جميع الحقول.');
+      alert('يرجى ملء جميع الحقول');
       return;
     }
 
-    let message = `طلب من متجر ريماس للصحة والجمال:\n\n`;
+    // تأكد من أن رقم الهاتف يبدأ بـ 0 أو +964 ثم استبدله بـ +964
+    if (phone.startsWith('0')) {
+      phone = '+964' + phone.substring(1);
+    } else if (!phone.startsWith('+964')) {
+      alert('يرجى إدخال رقم هاتف عراقي صحيح يبدأ بـ 0 أو +964');
+      return;
+    }
+
+    // إعداد رسالة الطلب
+    let message = `مرحباً، لدي طلب من ريماس للصحة والجمال:\n\n`;
     message += `الاسم: ${name}\n`;
-    message += `رقم الهاتف: ${phone}\n`;
+    message += `الهاتف: ${phone}\n`;
     message += `المحافظة: ${province}\n`;
-    message += `المنطقة / الحي: ${area}\n\n`;
-    message += `تفاصيل الطلب:\n`;
+    message += `المنطقة: ${area}\n\n`;
+    message += `الطلب:\n`;
 
     cart.forEach(item => {
-      message += `- ${item.name} (الكمية: ${item.quantity}) - السعر: ${(item.price * item.quantity).toLocaleString()} دينار\n`;
+      message += `- ${item.name} (الكمية: ${item.quantity}) - السعر الكلي: ${item.price * item.quantity} دينار\n`;
     });
-    message += `\nالمجموع الكلي: ${cart.reduce((sum, i) => sum + i.price * i.quantity, 0).toLocaleString()} دينار\n`;
+    message += `\nالمجموع الكلي: ${cart.reduce((sum, i) => sum + i.price * i.quantity, 0)} دينار\n\n`;
+    message += `شكراً لكم!`;
 
-    // ترميز الرسالة لواتساب
-    const encodedMsg = encodeURIComponent(message);
-    const whatsappLink = `https://wa.me/9647801234567?text=${encodedMsg}`;
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappNumber = '9647881556110';
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
     sendSound.play();
-    showNotification('يتم تحويلك لواتساب لإرسال الطلب...');
-
     setTimeout(() => {
-      window.open(whatsappLink, '_blank');
-    }, 1600);
+      window.open(whatsappUrl, '_blank');
+    }, 800);
 
-    // تفريغ السلة والنموذج بعد الإرسال
-    cart.length = 0;
+    // مسح السلة والنموذج بعد الإرسال
+    cart = [];
     updateCart();
-    document.getElementById('orderForm').reset();
+    e.target.reset();
   }
 </script>
 
