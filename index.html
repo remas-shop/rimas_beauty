@@ -1,339 +1,411 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ريماس للصحة والجمال</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
-    * { box-sizing: border-box; }
-    body {
-      font-family: 'Cairo', sans-serif;
-      margin: 0; padding: 0;
-      background: #f0fdfa;
-      color: #004d40;
-    }
-    header {
-      background-color: #008080;
-      display: flex;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ريماس للصحة والجمال</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Cairo', sans-serif;
+    margin: 0; padding: 0;
+    background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
+    background-size: cover;
+    color: #004d40;
+  }
+  header {
+    background-color: #008080cc;
+    padding: 10px 20px;
+    color: white;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  header img {
+    height: 50px;
+    vertical-align: middle;
+  }
+  header h1 {
+    display: inline-block;
+    margin: 0 0 0 10px;
+    font-weight: 700;
+    font-size: 24px;
+    vertical-align: middle;
+  }
+  main {
+    max-width: 1000px;
+    margin: 20px auto;
+    background-color: #ffffffcc;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  }
+  h2 {
+    text-align: center;
+    color: #00695c;
+    margin-bottom: 10px;
+  }
+  .products, .offers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  .product-card, .offer-card {
+    background: #e0f2f1;
+    border-radius: 8px;
+    padding: 15px;
+    width: 280px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .product-card img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    height: 180px;
+    object-fit: contain;
+  }
+  .product-card h3, .offer-card h3 {
+    margin: 10px 0 5px;
+    color: #004d40;
+  }
+  .product-card p.price, .offer-card p.price {
+    font-weight: bold;
+    color: #00796b;
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  input.quantity {
+    width: 60px;
+    padding: 5px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    border: 1px solid #004d40;
+    border-radius: 5px;
+    text-align: center;
+  }
+  button {
+    background-color: #008080;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background-color: #004d40;
+  }
+  #cart {
+    background: #b2dfdbcc;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+  }
+  #cart table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  #cart th, #cart td {
+    border: 1px solid #004d40;
+    padding: 8px;
+    text-align: center;
+  }
+  #notification {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #004d40dd;
+    color: #fff;
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 18px;
+    display: none;
+    z-index: 9999;
+  }
+  form {
+    max-width: 500px;
+    margin: 0 auto 30px;
+    background: #b2dfdbcc;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+  }
+  form input, form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #004d40;
+    border-radius: 5px;
+    font-size: 16px;
+    direction: rtl;
+  }
+  footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #008080cc;
+    color: white;
+  }
+  footer a {
+    color: #a7ffeb;
+    text-decoration: none;
+    font-weight: 700;
+    margin-left: 5px;
+  }
+  footer a:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 650px) {
+    .products, .offers {
+      flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      padding: 10px 20px;
-      color: white;
-      position: sticky;
-      top: 0;
-      z-index: 100;
     }
-    header img { height: 50px; }
-    header h1 { margin: 0; font-size: 24px; }
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 15px;
-      font-weight: bold;
-    }
-
-    .hero-text {
-      text-align: center;
-      font-size: 20px;
-      font-weight: bold;
-      margin: 20px 0;
-    }
-
-    .products {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    .product-card {
-      background: #e0f2f1;
-      border-radius: 8px;
-      padding: 15px;
-      width: 250px;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-
-    .product-card img {
-      width: 100%;
-      height: 160px;
-      object-fit: contain;
-      border-radius: 8px;
-    }
-
-    .product-card select,
-    .product-card button {
-      margin-top: 10px;
-      width: 100%;
-      padding: 8px;
-      font-weight: bold;
-    }
-
-    .product-card button {
-      background-color: #00695c;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .alert {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background-color: #26a69a;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-weight: bold;
-      opacity: 0;
-      transition: all 0.5s ease-in-out;
-      z-index: 9999;
-    }
-
-    .alert.show {
-      opacity: 1;
-    }
-
-    @media (max-width: 768px) {
-      .products { flex-direction: column; align-items: center; }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
+<div id="notification"></div>
+
 <header>
-  <img src="https://i.ibb.co/jvG3KHxD/logo.png" alt="شعار" />
+  <img src="https://i.ibb.co/jvG3KHxD/logo.png" alt="شعار ريماس" />
   <h1>ريماس للصحة والجمال</h1>
-  <nav>
-    <a href="#products">المنتجات</a>
-    <a href="#cart">السلة</a>
-    <a href="#order">طلب</a>
-  </nav>
 </header>
 
-<div class="hero-text">
-  تخلص من القمل والبيوض بجلسة واحدة! عروض خاصة داخل العراق فقط
-</div>
+<main>
+  <h2>منتجاتنا</h2>
+  <div class="products">
+    <div class="product-card">
+      <img src="https://i.ibb.co/whLBppML/package.png" alt="بكج المعالجة الكامل" />
+      <h3>بكج المعالجة الكامل</h3>
+      <p class="price">20000</p>
+      <input class="quantity" type="number" value="1" min="1" />
+      <button onclick="addToCart('بكج المعالجة الكامل', 20000, this)">أضف للسلة</button>
+    </div>
 
-<div class="alert" id="alert"></div>
+    <div class="product-card">
+      <img src="https://i.ibb.co/pjXSTKnK/combs.png" alt="المشط المغناطيسي" />
+      <h3>المشط المغناطيسي</h3>
+      <p class="price">15000</p>
+      <input class="quantity" type="number" value="1" min="1" />
+      <button onclick="addToCart('المشط المغناطيسي', 15000, this)">أضف للسلة</button>
+    </div>
 
-<section id="products" class="products">
-  <!-- المنتج 1 -->
-  <div class="product-card">
-    <img src="https://i.ibb.co/whLBppML/package.png" alt="بكج" />
-    <h3>بكج المعالجة الكامل</h3>
-    <p>20,000 دينار</p>
-    <label>العدد:</label>
-    <select id="q1">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-    </select>
-    <button onclick="addToCart('بكج المعالجة الكامل', 20000, 'q1')">أضف إلى السلة</button>
+    <div class="product-card">
+      <img src="https://i.ibb.co/3YGr99Ym/yansoon.png" alt="معالج اليانسون" />
+      <h3>معالج اليانسون</h3>
+      <p class="price">13000</p>
+      <input class="quantity" type="number" value="1" min="1" />
+      <button onclick="addToCart('معالج اليانسون', 13000, this)">أضف للسلة</button>
+    </div>
   </div>
 
-  <!-- المنتج 2 -->
-  <div class="product-card">
-    <img src="https://i.ibb.co/pjXSTKnK/combs.png" alt="المشط" />
-    <h3>المشط المغناطيسي</h3>
-    <p>15,000 دينار</p>
-    <label>العدد:</label>
-    <select id="q2">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-    </select>
-    <button onclick="addToCart('المشط المغناطيسي', 15000, 'q2')">أضف إلى السلة</button>
+  <h2>عروض خاصة</h2>
+  <div class="offers">
+    <div class="offer-card">
+      <h3>اشترِ 2 معالج اليانسون واحصل على الثالث مجاناً</h3>
+      <p class="price">25000</p>
+      <input class="quantity" type="number" value="1" min="1" />
+      <button onclick="addToCart('عرض معالج 2+1', 25000, this)">أضف للسلة</button>
+    </div>
+
+    <div class="offer-card">
+      <h3>اشترِ 2 بكج المعالجة الكامل واحصل على معالج اليانسون مجاناً</h3>
+      <p class="price">40000</p>
+      <input class="quantity" type="number" value="1" min="1" />
+      <button onclick="addToCart('عرض بكج + معالج', 40000, this)">أضف للسلة</button>
+    </div>
+
+    <div class="offer-card">
+      <h3>شراء 2 مشط مغناطيسي بسعر 25000 دينار</h3>
+      <p class="price">25000</p>
+      <input class="quantity" type="number" value="1" min="1" />
+      <button onclick="addToCart('عرض 2 مشط', 25000, this)">أضف للسلة</button>
+    </div>
   </div>
 
-  <!-- المنتج 3 -->
-  <div class="product-card">
-    <img src="https://i.ibb.co/3YGr99Ym/yansoon.png" alt="معالج" />
-    <h3>معالج اليانسون</h3>
-    <p>13,000 دينار</p>
-    <label>العدد:</label>
-    <select id="q3">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-    </select>
-    <button onclick="addToCart('معالج اليانسون', 13000, 'q3')">أضف إلى السلة</button>
+  <div id="cart">
+    <h2>سلة المشتريات 🛒</h2>
+    <table id="cartTable" dir="rtl">
+      <thead>
+        <tr>
+          <th>المنتج</th>
+          <th>الكمية</th>
+          <th>السعر الإجمالي</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <p style="text-align:right;font-size:18px;"><strong>المجموع الكلي: <span id="total">0</span> دينار</strong></p>
   </div>
-</section>
-<hr style="margin: 40px 0;">
 
-<!-- ✅ السلة -->
-<section id="cart" style="max-width: 600px; margin: auto; padding: 20px; background: #f1f8f6; border-radius: 10px;">
-  <h2 style="text-align: center; color: #00796b;">سلة الطلبات</h2>
-  <div id="cartItems"></div>
-  <p style="text-align: center; font-size: 20px; margin-top: 20px;">
-    المجموع الكلي: <span id="totalPrice">0</span> دينار
-  </p>
-</section>
-
-<!-- ✅ نموذج إرسال الطلب -->
-<section id="order" style="max-width: 600px; margin: 40px auto; padding: 20px; background: #e0f2f1; border-radius: 10px;">
-  <h2 style="text-align: center; color: #004d40;">معلومات التوصيل</h2>
-  <form id="orderForm">
+  <form id="orderForm" onsubmit="sendOrder(event)">
+    <h2>معلومات الزبون</h2>
     <label for="name">الاسم الكامل:</label>
-    <input type="text" id="name" name="name" required style="width: 100%; padding: 10px; margin-bottom: 10px;" />
+    <input type="text" id="name" required />
 
     <label for="phone">رقم الهاتف (واتساب):</label>
-    <input type="tel" id="phone" name="phone" required placeholder="مثلاً 07881234567"
-           style="width: 100%; padding: 10px; margin-bottom: 10px;" />
+    <input type="tel" id="phone" required pattern="[0-9]{10,12}" placeholder="مثلاً 07881234567" />
 
     <label for="province">المحافظة:</label>
-    <select id="province" name="province" required style="width: 100%; padding: 10px; margin-bottom: 10px;">
+    <select id="province" required>
       <option value="">اختر المحافظة</option>
-      <option value="بغداد">بغداد</option>
-      <option value="البصرة">البصرة</option>
-      <option value="النجف">النجف</option>
-      <option value="كربلاء">كربلاء</option>
-      <option value="بابل">بابل</option>
-      <option value="ديالى">ديالى</option>
-      <option value="الديوانية">الديوانية</option>
-      <option value="ميسان">ميسان</option>
-      <option value="ذي قار">ذي قار</option>
-      <option value="صلاح الدين">صلاح الدين</option>
-      <option value="نينوى">نينوى</option>
-      <option value="كركوك">كركوك</option>
-      <option value="أربيل">أربيل</option>
-      <option value="السليمانية">السليمانية</option>
-      <option value="دهوك">دهوك</option>
-      <option value="الأنبار">الأنبار</option>
-      <option value="واسط">واسط</option>
-      <option value="المثنى">المثنى</option>
-      <option value="ذي قار">ذي قار</option>
+      <option>بغداد</option>
+      <option>البصرة</option>
+      <option>النجف</option>
+      <option>كربلاء</option>
+      <option>بابل</option>
+      <option>ديالى</option>
+      <option>الديوانية</option>
+      <option>الأنبار</option>
+      <option>نينوى</option>
+      <option>صلاح الدين</option>
+      <option>ذي قار</option>
+      <option>ميسان</option>
+      <option>واسط</option>
+      <option>المثنى</option>
+      <option>أربيل</option>
+      <option>دهوك</option>
+      <option>السليمانية</option>
+      <option>كركوك</option>
+      <option>حلبجة</option>
     </select>
 
-    <label for="area">المنطقة/العنوان التفصيلي:</label>
-    <input type="text" id="area" name="area" required style="width: 100%; padding: 10px; margin-bottom: 15px;" />
+    <label for="area">
+    <label for="area">المنطقة:</label>
+    <input type="text" id="area" required />
 
-    <button type="submit" style="
-      width: 100%;
-      padding: 15px;
-      background-color: #00695c;
-      color: white;
-      font-size: 18px;
-      font-weight: bold;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    ">إرسال الطلب</button>
+    <button type="submit" id="sendOrderBtn">إرسال الطلب</button>
   </form>
-</section>
+</main>
 
-<footer style="text-align: center; padding: 20px; background: #008080; color: white;">
-  تابعونا على الإنستغرام:
-  <a href="https://www.instagram.com/remas_beauty1" style="color: #a7ffeb; text-decoration: none;" target="_blank">@remas_beauty1</a>
+<footer>
+  &copy; 2025 ريماس للصحة والجمال - <a href="https://wa.me/07881234567" target="_blank" rel="noopener">واتساب</a>
 </footer>
+
 <script>
-  let cart = [];
+// صوت عند إضافة منتج للسلة
+const addSound = new Audio('https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg');
+// صوت عند إرسال الطلب
+const sendSound = new Audio('https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg');
 
-  function showToast(message) {
-    const toast = document.createElement('div');
-    toast.textContent = message;
-    toast.style.cssText = `
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background-color: #008080;
-      color: white;
-      padding: 15px 25px;
-      border-radius: 8px;
-      font-weight: bold;
-      z-index: 9999;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+// مصفوفة السلة
+let cartItems = [];
+
+// عرض التنبيه مع اختفاء تلقائي
+function showNotification(message) {
+  const notif = document.getElementById('notification');
+  notif.textContent = message;
+  notif.style.display = 'block';
+  setTimeout(() => {
+    notif.style.display = 'none';
+  }, 3000);
+}
+
+// إضافة عنصر للسلة
+function addToCart(name, price, btn) {
+  // جلب الكمية
+  const quantityInput = btn.previousElementSibling;
+  let qty = parseInt(quantityInput.value);
+  if (qty < 1) qty = 1;
+
+  // تحقق إذا المنتج موجود بالسلة بالفعل
+  const existing = cartItems.find(item => item.name === name);
+  if (existing) {
+    existing.quantity += qty;
+  } else {
+    cartItems.push({ name, price, quantity: qty });
+  }
+  updateCart();
+  addSound.play();
+  showNotification(`تم إضافة "${name}" (${qty}) إلى السلة`);
+}
+
+// تحديث جدول السلة
+function updateCart() {
+  const tbody = document.querySelector('#cartTable tbody');
+  tbody.innerHTML = '';
+  let total = 0;
+
+  cartItems.forEach(item => {
+    const tr = document.createElement('tr');
+    const totalPrice = item.price * item.quantity;
+    total += totalPrice;
+
+    tr.innerHTML = `
+      <td>${item.name}</td>
+      <td>${item.quantity}</td>
+      <td>${totalPrice.toLocaleString()} دينار</td>
     `;
-    document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 2500);
+    tbody.appendChild(tr);
+  });
+
+  document.getElementById('total').textContent = total.toLocaleString();
+}
+
+// إرسال الطلب عبر واتساب مع تنبيه وصوت
+function sendOrder(event) {
+  event.preventDefault();
+  if (cartItems.length === 0) {
+    showNotification('السلة فارغة، الرجاء إضافة منتجات قبل الإرسال');
+    return;
   }
 
-  function addToCart(productName, price) {
-    const quantity = prompt(`كمية المنتج "${productName}"؟`, "1");
-    const qty = parseInt(quantity);
-    if (!qty || qty <= 0) return;
+  // جلب بيانات الزبون
+  const name = document.getElementById('name').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const province = document.getElementById('province').value.trim();
+  const area = document.getElementById('area').value.trim();
 
-    cart.push({ name: productName, price: price, qty: qty });
-    updateCartUI();
-    showToast(`✅ تمت إضافة "${productName}" (${qty}) للسلة`);
-  }
+  // إعداد نص الطلب
+  let orderSummary = `طلب من ${name}%0Aالمحافظة: ${province}%0Aالمنطقة: ${area}%0A\nالطلبات:%0A`;
+  let total = 0;
+  cartItems.forEach(item => {
+    const itemTotal = item.price * item.quantity;
+    total += itemTotal;
+    orderSummary += `- ${item.name} (الكمية: ${item.quantity}) - السعر: ${itemTotal.toLocaleString()} دينار%0A`;
+  });
+  orderSummary += `\nالمجموع الكلي: ${total.toLocaleString()} دينار`;
 
-  function updateCartUI() {
-    const cartContainer = document.getElementById('cartItems');
-    const totalPriceEl = document.getElementById('totalPrice');
-    cartContainer.innerHTML = '';
+  // رسالة تأكيد مميزة
+  const sendBtn = document.getElementById('sendOrderBtn');
+  sendBtn.disabled = true;
+  sendBtn.textContent = 'جاري الإرسال...';
+  sendBtn.style.backgroundColor = '#004d40';
 
-    let total = 0;
-    cart.forEach((item, index) => {
-      const itemTotal = item.price * item.qty;
-      total += itemTotal;
+  // تشغيل صوت الإرسال والتنبيه
+  sendSound.play();
+  showNotification('تم تأكيد طلبك، شكراً لتعاملك معنا!');
 
-      const div = document.createElement('div');
-      div.innerHTML = `
-        <p style="margin: 5px 0;">
-          🛒 ${item.name} — الكمية: ${item.qty} — السعر: ${itemTotal} دينار
-          <button onclick="removeItem(${index})" style="margin-right:10px; color:red;">❌</button>
-        </p>
-      `;
-      cartContainer.appendChild(div);
-    });
-
-    totalPriceEl.textContent = total;
-  }
-
-  function removeItem(index) {
-    cart.splice(index, 1);
-    updateCartUI();
-    showToast("🗑️ تم حذف المنتج من السلة");
-  }
-
-  document.getElementById('orderForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    if (cart.length === 0) {
-      alert("❌ السلة فارغة. يرجى اختيار منتج.");
-      return;
-    }
-
-    const name = document.getElementById('name').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const province = document.getElementById('province').value;
-    const area = document.getElementById('area').value.trim();
-
-    let orderDetails = `طلب جديد من موقع ريماس:%0A`;
-    orderDetails += `👤 الاسم: ${name}%0A📞 الهاتف: ${phone}%0A🏙️ المحافظة: ${province}%0A📍 المنطقة: ${area}%0A%0A📦 المنتجات:%0A`;
-
-    let total = 0;
-    cart.forEach(item => {
-      const itemTotal = item.price * item.qty;
-      total += itemTotal;
-      orderDetails += `- ${item.name} × ${item.qty} = ${itemTotal} دينار%0A`;
-    });
-
-    orderDetails += `%0A💰 المجموع الكلي: ${total} دينار`;
-
-    const whatsappNumber = "9647881556110";
-    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${orderDetails}`;
-
-    alert(`✅ تم تأكيد طلبك. سيتم تحويلك إلى واتساب لإرسال الطلب مباشرة.\n\n📦 الطلبات:\n${cart.map(item => `${item.name} × ${item.qty}`).join('\n')}\n💰 المجموع: ${total} دينار`);
-
+  // فتح واتساب بالرسالة
+  setTimeout(() => {
+    const whatsappURL = `https://wa.me/${phone}?text=${orderSummary}`;
     window.open(whatsappURL, '_blank');
-  });
-
-  // إضافة أزرار "إضافة للسلة" للمنتجات والعروض
-  document.querySelectorAll('.product-card button').forEach(btn => {
-    const card = btn.closest('.product-card');
-    const productName = card.getAttribute('data-product');
-    let price = 0;
-
-    if (productName.includes("بكج")) price = 20000;
-    else if (productName.includes("المشط")) price = 15000;
-    else if (productName.includes("اليانسون")) price = 13000;
-
-    btn.onclick = () => addToCart(productName, price);
-  });
+    // إعادة تهيئة النموذج والسلة
+    cartItems = [];
+    updateCart();
+    document.getElementById('orderForm').reset();
+    sendBtn.disabled = false;
+    sendBtn.textContent = 'إرسال الطلب';
+    sendBtn.style.backgroundColor = '#008080';
+  }, 1500);
+}
 </script>
+</body>
+</html>
