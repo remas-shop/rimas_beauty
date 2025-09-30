@@ -25,7 +25,8 @@ header {
 header img.logo { height:50px; margin-bottom:10px; border-radius:10px; }
 
 #banner {
-  background: linear-gradient(135deg, #4db6ac, #00796b);
+  background: url('https://i.imgur.com/amF0F7w.png') no-repeat center top;
+  background-size: contain;
   color: white;
   text-align: center;
   padding: 25px 10px;
@@ -34,10 +35,6 @@ header img.logo { height:50px; margin-bottom:10px; border-radius:10px; }
   border-radius: 12px;
   margin: 15px auto;
   box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-  background-image: url('https://i.imgur.com/A5jZOLP.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center top;
   opacity:0;
   transform: translateY(-10px);
   animation: fadeIn 1s forwards;
@@ -180,14 +177,14 @@ form.orderForm button {
 <h2>عروض خاصة</h2>
 <div class="grid">
   <div class="card">
-    <img src="https://i.imgur.com/hwLJiT9.png" alt="عرض البكجين" />
+    <img src="https://i.imgur.com/pjpKIs3.png" alt="عرض البكجين" />
     <h3>اشترِ 2 معالج اليانسون واحصل على الثالث مجاناً</h3>
     <p class="price">25000 د.ع</p>
     <input class="quantity" type="number" value="1" min="1" />
     <button class="add" onclick="addToCart('عرض 2+1 معالج',25000,this)">أضف للسلة</button>
   </div>
   <div class="card">
-    <img src="https://i.imgur.com/pjpKIs3.png" alt="عرض المعالجين" />
+    <img src="https://i.imgur.com/hwLJiT9.png" alt="عرض المعالجين" />
     <h3>اشترِ 2 بكج واحصل على معالج مجاني</h3>
     <p class="price">40000 د.ع</p>
     <input class="quantity" type="number" value="1" min="1" />
