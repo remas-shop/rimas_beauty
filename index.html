@@ -24,27 +24,40 @@ header {
 }
 header img.logo { height:50px; margin-bottom:10px; border-radius:10px; }
 
+/* بانر محسّن */
 #banner {
-  background: url('https://i.imgur.com/amF0F7w.png') no-repeat center top;
-  background-size: contain;
-  color: white;
-  text-align: center;
-  padding: 25px 10px;
-  font-size: 20px;
-  font-weight: bold;
-  border-radius: 12px;
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
   margin: 15px auto;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-  opacity:0;
-  transform: translateY(-10px);
-  animation: fadeIn 1s forwards;
+  border-radius: 12px;
+  overflow: hidden;
 }
-#banner span.highlight {
+.bannerImage {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.bannerText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  background: rgba(0,0,0,0.3); /* طبقة نصف شفافة للنص */
+  padding: 8px 12px;
+  border-radius: 8px;
+  line-height: 1.4;
+}
+.bannerText .highlight {
   background-color: #25D366;
   padding: 3px 8px;
   border-radius: 5px;
+  color: white;
 }
-@keyframes fadeIn { to { opacity:1; transform:translateY(0); } }
 
 main { max-width: 1200px; margin: 10px auto; padding: 10px; }
 h2 { text-align: center; margin: 20px 0; color:#00695c; }
@@ -124,10 +137,10 @@ form.orderForm button {
 }
 
 @media (max-width:900px){ .grid{ grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); } }
-@media (max-width:600px){
+@media(max-width:600px){
   header img.logo{ height:40px; }
   header h1{ font-size:18px; }
-  #banner{font-size:16px;padding:15px;}
+  .bannerText{ font-size:16px; padding:5px 8px; }
   .card{padding:10px;}
   .card h3{font-size:16px;}
   .card p.price{font-size:14px;}
@@ -142,8 +155,12 @@ form.orderForm button {
   <h1>ريماس للصحة والجمال</h1>
 </header>
 
+<!-- بانر محسّن -->
 <div id="banner">
-اكتشف قوة <span class="highlight">المشط المغناطيسي</span> مع <span class="highlight">معالج اليانسون</span> لشعرك الصحي والجميل!
+  <img src="https://i.imgur.com/amF0F7w.png" alt="بانر ريماس" class="bannerImage" />
+  <div class="bannerText">
+    اكتشف قوة <span class="highlight">المشط المغناطيسي</span> مع <span class="highlight">معالج اليانسون</span> لشعرك الصحي والجميل!
+  </div>
 </div>
 
 <main>
@@ -273,22 +290,19 @@ const soundUpdate=new Audio('https://actions.google.com/sounds/v1/alarms/beep_sh
 
 function showNotify(msg){
   const n=document.getElementById('notify');
-  n.textContent=msg;
-  n.style.display='block';
-  setTimeout(()=>n.style.display='none',2000);
+  n.textContent=msg; n.style.display='block';
+  setTimeout(()=>{ n.style.display='none'; },1500);
 }
 
-function addToCart(name,price,btn){
+function addToCart(name, price, btn){
   const quantity=parseInt(btn.previousElementSibling.value);
   if(isNaN(quantity)||quantity<1) return alert("الكمية غير صالحة");
   const existing=cartItems.find(i=>i.name===name);
   if(existing) existing.quantity+=quantity;
   else cartItems.push({name,price,quantity});
   updateCartTable();
-  soundAdd.play().catch(()=>{});
+  soundAdd.play();
   btn.previousElementSibling.value=1;
-  saveCart();
-  showNotify(`${name} تمت إضافته للسلة`);
 }
 
 function updateCartTable(){
@@ -297,60 +311,49 @@ function updateCartTable(){
   let total=0;
   cartItems.forEach((item,index)=>{
     const row=document.createElement('tr');
-    row.innerHTML=`
-      <td>${item.name}</td>
-      <td><input type="number" min="1" value="${item.quantity}" onchange="updateQuantity(${index}, this.value)" /></td>
+    row.innerHTML=`<td>${item.name}</td>
+      <td><input type="number" min="1" value="${item.quantity}" onchange="updateQuantity(${index}, this.value)"/></td>
       <td>${item.price*item.quantity} د.ع</td>
       <td><button onclick="updateQuantity(${index}, prompt('أدخل الكمية الجديدة:', ${item.quantity}))">✏️</button></td>
-      <td><button onclick="removeItem(${index})" style="background:#d32f2f;color:white">🗑️</button></td>
-    `;
+      <td><button onclick="removeItem(${index})" style="background:#d32f2f;color:white">🗑️</button></td>`;
     total+=item.price*item.quantity;
     tbody.appendChild(row);
   });
   document.getElementById('total').textContent=total;
+  localStorage.setItem('cart', JSON.stringify(cartItems));
 }
 
 function removeItem(index){
-  const name=cartItems[index].name;
   cartItems.splice(index,1);
   updateCartTable();
-  soundRemove.play().catch(()=>{});
-  saveCart();
-  showNotify(`${name} تم حذفه من السلة`);
+  soundRemove.play();
 }
 
-function updateQuantity(index,newQuantity){
-  newQuantity=parseInt(newQuantity);
-  if(isNaN(newQuantity)||newQuantity<1) return alert("الكمية غير صالحة");
-  cartItems[index].quantity=newQuantity;
+function updateQuantity(index,newQty){
+  newQty=parseInt(newQty);
+  if(isNaN(newQty)||newQty<1) return alert("الكمية غير صالحة");
+  cartItems[index].quantity=newQty;
   updateCartTable();
-  soundUpdate.play().catch(()=>{});
-  saveCart();
-  showNotify(`${cartItems[index].name} تم تحديث الكمية`);
+  soundUpdate.play();
 }
 
-function clearCart(){
-  cartItems=[];
-  updateCartTable();
-  saveCart();
-  showNotify("تم مسح السلة بالكامل");
-}
-
-function saveCart(){ localStorage.setItem('cart',JSON.stringify(cartItems)); }
+function clearCart(){ cartItems=[]; updateCartTable(); }
 
 function sendOrder(e){
   e.preventDefault();
-  if(cartItems.length===0){alert("السلة فارغة!"); return;}
-  const name=document.getElementById('customerName').value;
-  const phone=document.getElementById('customerPhone').value;
+  if(cartItems.length===0){ alert("السلة فارغة"); return; }
+  const name=document.getElementById('customerName').value.trim();
+  const phone=document.getElementById('customerPhone').value.trim();
   const city=document.getElementById('customerCity').value;
-  const area=document.getElementById('customerArea').value;
-
-  let msg=`مرحباً، أود طلب المنتجات التالية:\n`;
-  cartItems.forEach(i=>{ msg+=`${i.name} - ${i.quantity} قطعة\n`; });
-  msg+=`\nالاسم: ${name}\nرقم الهاتف: ${phone}\nالمحافظة: ${city}\nالمنطقة: ${area}`;
-
-  const waLink=`https://wa.me/07881556110?text=${encodeURIComponent(msg)}`;
+  const area=document.getElementById('customerArea').value.trim();
+  if(!name||!phone||!city||!area) return alert("الرجاء ملء جميع البيانات");
+  
+  let message=`طلب من: ${name}\nرقم الهاتف: ${phone}\nالمحافظة: ${city}\nالمنطقة: ${area}\n\nالمنتجات:\n`;
+  cartItems.forEach(i=>{ message+=`- ${i.name} x ${i.quantity} = ${i.price*i.quantity} د.ع\n`; });
+  const total=document.getElementById('total').textContent;
+  message+=`\nالمجموع الكلي: ${total} د.ع`;
+  
+  const waLink=`https://wa.me/964${phone.replace(/^0/,'')}?text=${encodeURIComponent(message)}`;
   window.open(waLink,'_blank');
 }
 updateCartTable();
