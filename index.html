@@ -12,8 +12,7 @@
     body {
       font-family: 'Cairo', sans-serif;
       margin: 0; padding: 0;
-      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
-      background-size: cover;
+      background: #f0f0f0;
       color: #004d40;
       min-height: 100vh;
       display: flex;
@@ -28,10 +27,11 @@
       justify-content: space-between;
     }
     header h1 { font-size: 24px; margin: 0 auto; }
-    header img.logo { height: 50px; }
-    .social-icons a img {
-      width: 30px;
+    .social-icons a {
       margin-left: 10px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
     }
     main {
       max-width: 1000px;
@@ -67,12 +67,6 @@
     .product-card:hover, .offer-card:hover {
       transform: scale(1.05);
       box-shadow: 0 8px 20px rgba(0, 128, 128, 0.5);
-    }
-    .product-card img, .offer-card img {
-      height: 180px;
-      object-fit: contain;
-      margin-bottom: 10px;
-      width: 100%;
     }
     .product-card h3, .offer-card h3 { margin: 10px 0 5px; }
     .product-card p.price, .offer-card p.price {
@@ -159,15 +153,10 @@
 
 <header>
   <div class="social-icons">
-    <a href="https://www.instagram.com/rimas_beauty1" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
-    </a>
-    <a href="https://www.tiktok.com/@rimas_beauty.co" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046120.png" alt="TikTok">
-    </a>
+    <a href="https://www.instagram.com/rimas_beauty1" target="_blank">Instagram</a>
+    <a href="https://www.tiktok.com/@rimas_beauty.co" target="_blank">TikTok</a>
   </div>
   <h1>ريماس للصحة والجمال</h1>
-  <img class="logo" src="https://i.ibb.co/jvG3KHxD/logo.png" alt="شعار ريماس" />
 </header>
 
 <main>
@@ -175,7 +164,6 @@
   <h2>منتجاتنا</h2>
   <div class="products">
     <div class="product-card">
-      <img src="https://i.ibb.co/whLBppML/package.png" alt="بكج المعالجة الكامل" />
       <h3>بكج المعالجة الكامل</h3>
       <p class="price">20000</p>
       <input class="quantity" type="number" value="1" min="1" />
@@ -183,7 +171,6 @@
     </div>
 
     <div class="product-card">
-      <img src="https://i.ibb.co/pjXSTKnK/combs.png" alt="المشط المغناطيسي" />
       <h3>المشط المغناطيسي</h3>
       <p class="price">15000</p>
       <input class="quantity" type="number" value="1" min="1" />
@@ -191,7 +178,6 @@
     </div>
 
     <div class="product-card">
-      <img src="https://i.ibb.co/3YGr99Ym/yansoon.png" alt="معالج اليانسون" />
       <h3>معالج اليانسون</h3>
       <p class="price">13000</p>
       <input class="quantity" type="number" value="1" min="1" />
@@ -355,7 +341,6 @@
     const total = cartItems.reduce((sum, i) => sum + i.price * i.quantity, 0);
     message += `%0A💰 المجموع الكلي: ${total} د.ع`;
 
-    // ضع رقم واتساب هنا بدلاً من الرقم التالي
     const whatsappNumber = "9647881556110"; // <-- غيّر هذا الرقم
     const url = `https://wa.me/${whatsappNumber}?text=${message}`;
     window.open(url, "_blank");
