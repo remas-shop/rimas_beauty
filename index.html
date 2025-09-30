@@ -40,23 +40,23 @@ header img.logo { height:50px; margin-bottom:10px; border-radius:10px; }
 }
 .bannerText {
   position: absolute;
-  top: 50%;
+  bottom: 10px;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   color: white;
   font-weight: bold;
   font-size: 20px;
   text-align: center;
-  background: rgba(0,0,0,0.3); /* طبقة نصف شفافة للنص */
+  background: rgba(0,0,0,0.0); /* إزالة الطبقة المظلمة */
   padding: 8px 12px;
   border-radius: 8px;
   line-height: 1.4;
 }
 .bannerText .highlight {
-  background-color: #25D366;
-  padding: 3px 8px;
-  border-radius: 5px;
-  color: white;
+  color: white; /* النص باللون الأبيض فقط */
+  background:none;
+  padding:0;
+  border-radius:0;
 }
 
 main { max-width: 1200px; margin: 10px auto; padding: 10px; }
@@ -136,11 +136,19 @@ form.orderForm button {
   display:none; z-index:1000;
 }
 
+footer {
+  text-align:center; /* جعل الحقوق في المنتصف */
+  padding:12px;
+  background-color: #008080cc;
+  color:white;
+  font-size:14px;
+}
+
 @media (max-width:900px){ .grid{ grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); } }
 @media(max-width:600px){
   header img.logo{ height:40px; }
   header h1{ font-size:18px; }
-  .bannerText{ font-size:16px; padding:5px 8px; }
+  .bannerText{ font-size:16px; padding:5px 8px; bottom:5px; }
   .card{padding:10px;}
   .card h3{font-size:16px;}
   .card p.price{font-size:14px;}
@@ -288,27 +296,12 @@ const soundAdd=new Audio('https://actions.google.com/sounds/v1/cart/cart_add_ite
 const soundRemove=new Audio('https://actions.google.com/sounds/v1/cart/cart_remove_item.ogg');
 const soundUpdate=new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg');
 
-function showNotify(msg){
-  const n=document.getElementById('notify');
-  n.textContent=msg; n.style.display='block';
-  setTimeout(()=>{ n.style.display='none'; },1500);
-}
+function showNotify(msg){const n=document.getElementById('notify'); n.textContent=msg; n.style.display='block'; setTimeout(()=>{n.style.display='none';},1500);}
 
-function addToCart(name, price, btn){
-  const quantity=parseInt(btn.previousElementSibling.value);
-  if(isNaN(quantity)||quantity<1) return alert("الكمية غير صالحة");
-  const existing=cartItems.find(i=>i.name===name);
-  if(existing) existing.quantity+=quantity;
-  else cartItems.push({name,price,quantity});
-  updateCartTable();
-  soundAdd.play();
-  btn.previousElementSibling.value=1;
-}
+function addToCart(name,price,btn){const quantity=parseInt(btn.previousElementSibling.value);if(isNaN(quantity)||quantity<1)return alert("الكمية غير صالحة");const existing=cartItems.find(i=>i.name===name);if(existing)existing.quantity+=quantity;else cartItems.push({name,price,quantity});updateCartTable();soundAdd.play();btn.previousElementSibling.value=1;}
 
 function updateCartTable(){
-  const tbody=document.querySelector('#cartTable tbody');
-  tbody.innerHTML='';
-  let total=0;
+  const tbody=document.querySelector('#cartTable tbody'); tbody.innerHTML=''; let total=0;
   cartItems.forEach((item,index)=>{
     const row=document.createElement('tr');
     row.innerHTML=`<td>${item.name}</td>
@@ -320,25 +313,12 @@ function updateCartTable(){
     tbody.appendChild(row);
   });
   document.getElementById('total').textContent=total;
-  localStorage.setItem('cart', JSON.stringify(cartItems));
+  localStorage.setItem('cart',JSON.stringify(cartItems));
 }
 
-function removeItem(index){
-  cartItems.splice(index,1);
-  updateCartTable();
-  soundRemove.play();
-}
-
-function updateQuantity(index,newQty){
-  newQty=parseInt(newQty);
-  if(isNaN(newQty)||newQty<1) return alert("الكمية غير صالحة");
-  cartItems[index].quantity=newQty;
-  updateCartTable();
-  soundUpdate.play();
-}
-
-function clearCart(){ cartItems=[]; updateCartTable(); }
-
+function removeItem(index){cartItems.splice(index,1);updateCartTable();soundRemove.play();}
+function updateQuantity(index,newQty){newQty=parseInt(newQty);if(isNaN(newQty)||newQty<1)return alert("الكمية غير صالحة");cartItems[index].quantity=newQty;updateCartTable();soundUpdate.play();}
+function clearCart(){cartItems=[]; updateCartTable();}
 function sendOrder(e){
   e.preventDefault();
   if(cartItems.length===0){ alert("السلة فارغة"); return; }
