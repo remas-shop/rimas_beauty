@@ -40,6 +40,26 @@
       font-size: 24px;
       margin: 0;
     }
+
+    /* بانر ثابت */
+    #banner {
+      position: sticky;
+      top: 60px; /* بعد الهيدر */
+      background-color: #004d40cc;
+      color: #a7ffeb;
+      text-align: center;
+      font-weight: 700;
+      padding: 15px 10px;
+      font-size: 20px;
+      z-index: 90;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    #banner:hover {
+      background-color: #00796bcc;
+    }
+
     main {
       max-width: 1000px;
       margin: 20px auto;
@@ -79,42 +99,52 @@
       transform: scale(1.05);
       box-shadow: 0 8px 20px rgba(0, 128, 128, 0.5);
     }
-    .slider {
+
+    /* معرض صور المنتج */
+    .image-slider {
       position: relative;
       width: 100%;
       height: 180px;
       margin-bottom: 10px;
       overflow: hidden;
       border-radius: 8px;
-      background: white;
+      background: #fff;
     }
-    .slider img {
+    .image-slider img {
       width: 100%;
       height: 180px;
       object-fit: contain;
-      user-select: none;
+      display: none;
       pointer-events: none;
+      user-select: none;
     }
-    .slider button {
+    .image-slider img.active {
+      display: block;
+    }
+    .slider-controls {
       position: absolute;
       top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
       transform: translateY(-50%);
-      background: rgba(0, 77, 64, 0.7);
+      pointer-events: auto;
+    }
+    .slider-controls button {
+      background-color: #004d40cc;
       border: none;
       color: white;
-      font-size: 18px;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
+      padding: 5px 10px;
       cursor: pointer;
+      font-weight: 700;
+      border-radius: 50%;
       user-select: none;
+      transition: background-color 0.3s ease;
     }
-    .slider button.prev {
-      right: 40px;
+    .slider-controls button:hover {
+      background-color: #00796bcc;
     }
-    .slider button.next {
-      left: 40px;
-    }
+
     .product-card h3, .offer-card h3 {
       margin: 10px 0 5px;
       color: #004d40;
@@ -134,7 +164,7 @@
       border-radius: 5px;
       text-align: center;
     }
-    button.add-to-cart {
+    button {
       background-color: #008080;
       color: white;
       border: none;
@@ -145,7 +175,7 @@
       transition: background-color 0.3s ease;
       user-select: none;
     }
-    button.add-to-cart:hover {
+    button:hover {
       background-color: #004d40;
     }
     #cart {
@@ -153,12 +183,10 @@
       padding: 15px;
       border-radius: 10px;
       margin-bottom: 30px;
-      overflow-x: auto;
     }
     #cart table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 600px;
     }
     #cart th, #cart td {
       border: 1px solid #004d40;
@@ -223,29 +251,6 @@
       .product-card, .offer-card {
         width: 90%;
       }
-      .slider button.prev {
-        right: 10px;
-      }
-      .slider button.next {
-        left: 10px;
-      }
-    }
-    /* Lightbox styles */
-    #lightbox {
-      display: none;
-      position: fixed;
-      z-index: 10000;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.8);
-      justify-content: center;
-      align-items: center;
-      cursor: zoom-out;
-    }
-    #lightbox img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 10px;
-      box-shadow: 0 0 20px #000;
     }
   </style>
 </head>
@@ -258,241 +263,308 @@
     <h1>ريماس للصحة والجمال</h1>
   </header>
 
+  <div id="banner" onclick="showNotification('تابعوا عروضنا الجديدة في الإنستغرام والتيك توك!')">
+    عروض حصرية لفترة محدودة - تابعونا على 
+    <a href="https://www.instagram.com/rimas_beauty1" target="_blank" style="color:#a7ffeb; font-weight: bold; text-decoration: underline;">إنستغرام</a> و
+    <a href="https://www.tiktok.com/@rimas_beauty.co" target="_blank" style="color:#a7ffeb; font-weight: bold; text-decoration: underline;">تيك توك</a>
+  </div>
+
   <main>
     <h2>منتجاتنا</h2>
     <div class="products">
 
       <!-- بكج المعالجة الكامل -->
       <div class="product-card">
-        <div class="slider" data-index="0">
-          <button class="prev" aria-label="السابق">&#10094;</button>
-          <button class="next" aria-label="التالي">&#10095;</button>
-          <img src="https://i.ibb.co/whLBppML/package.png" alt="بكج المعالجة الكامل" />
+        <div class="image-slider" data-index="0">
+          <img src="https://i.imgur.com/4IJNvXZ.png" class="active" alt="بكج المعالجة الكامل صورة 1" />
+          <img src="https://i.imgur.com/JHhmAQP.png" alt="بكج المعالجة الكامل صورة 2" />
+          <img src="https://i.imgur.com/uJXeRpo.png" alt="بكج المعالجة الكامل صورة 3" />
+          <div class="slider-controls">
+            <button onclick="prevImage(this)">‹</button>
+            <button onclick="nextImage(this)">›</button>
+          </div>
         </div>
         <h3>بكج المعالجة الكامل</h3>
-        <p class="price">20000</p>
-        <input class="quantity" type="number" value="1" min="1" />
-        <button class="add-to-cart" onclick="addToCart('بكج المعالجة الكامل', 20000, this)">أضف للسلة</button>
+        <p class="price">السعر: 20000 د.ع</p>
+        <input type="number" min="1" value="1" class="quantity" />
+        <button onclick="addToCart('بكج المعالجة الكامل', 20000, this)">أضف إلى السلة</button>
       </div>
 
       <!-- المشط المغناطيسي -->
       <div class="product-card">
-        <div class="slider" data-index="0">
-          <button class="prev" aria-label="السابق">&#10094;</button>
-          <button class="next" aria-label="التالي">&#10095;</button>
-          <img src="https://i.ibb.co/1r0CGZf/comb1.png" alt="المشط المغناطيسي" />
+        <div class="image-slider" data-index="0">
+          <img src="https://i.imgur.com/GsOENhE.png" class="active" alt="المشط المغناطيسي صورة 1" />
+          <img src="https://i.imgur.com/5jjoF1C.png" alt="المشط المغناطيسي صورة 2" />
+          <img src="https://i.imgur.com/hy9LTNl.jpeg" alt="المشط المغناطيسي صورة 3" />
+          <div class="slider-controls">
+            <button onclick="prevImage(this)">‹</button>
+            <button onclick="nextImage(this)">›</button>
+          </div>
         </div>
         <h3>المشط المغناطيسي</h3>
-        <p class="price">15000</p>
-        <input class="quantity" type="number" value="1" min="1" />
-        <button class="add-to-cart" onclick="addToCart('المشط المغناطيسي', 15000, this)">أضف للسلة</button>
+        <p class="price">السعر: 15000 د.ع</p>
+        <input type="number" min="1" value="1" class="quantity" />
+        <button onclick="addToCart('المشط المغناطيسي', 15000, this)">أضف إلى السلة</button>
       </div>
 
       <!-- معالج اليانسون -->
       <div class="product-card">
-        <div class="slider" data-index="0">
-          <button class="prev" aria-label="السابق">&#10094;</button>
-          <button class="next" aria-label="التالي">&#10095;</button>
-          <img src="https://i.ibb.co/cTspT7k/anise1.png" alt="معالج اليانسون" />
+        <div class="image-slider" data-index="0">
+          <img src="https://i.imgur.com/K2Yyyt5.png" class="active" alt="معالج اليانسون صورة 1" />
+          <img src="https://i.imgur.com/5BGZHOr.png" alt="معالج اليانسون صورة 2" />
+          <img src="https://i.imgur.com/6gN7P6U.png" alt="معالج اليانسون صورة 3" />
+          <div class="slider-controls">
+            <button onclick="prevImage(this)">‹</button>
+            <button onclick="nextImage(this)">›</button>
+          </div>
         </div>
         <h3>معالج اليانسون</h3>
-        <p class="price">10000</p>
-        <input class="quantity" type="number" value="1" min="1" />
-        <button class="add-to-cart" onclick="addToCart('معالج اليانسون', 10000, this)">أضف للسلة</button>
+        <p class="price">السعر: 20000 د.ع</p>
+        <input type="number" min="1" value="1" class="quantity" />
+        <button onclick="addToCart('معالج اليانسون', 20000, this)">أضف إلى السلة</button>
       </div>
 
     </div>
 
-    <h2>عروضنا الخاصة</h2>
+    <h2>العروض الخاصة</h2>
     <div class="offers">
 
-      <!-- عرض بكجين مع معالج هدية -->
+      <!-- بكجين + معالج مجاني -->
       <div class="offer-card">
-        <div class="slider" data-index="0">
-          <button class="prev" aria-label="السابق">&#10094;</button>
-          <button class="next" aria-label="التالي">&#10095;</button>
-          <img src="https://i.ibb.co/jWzwgWN/offer1.png" alt="عرض بكجين مع معالج هدية" />
+        <div class="image-slider" data-index="0">
+          <img src="https://i.imgur.com/hwLJiT9.png" class="active" alt="عرض بكجين + معالج مجاني صورة 1" />
+          <img src="https://i.imgur.com/qkyaV64.png" alt="عرض بكجين + معالج مجاني صورة 2" />
+          <div class="slider-controls">
+            <button onclick="prevImage(this)">‹</button>
+            <button onclick="nextImage(this)">›</button>
+          </div>
         </div>
-        <h3>عرض بكجين مع معالج هدية</h3>
-        <p class="price">25000</p>
-        <input class="quantity" type="number" value="1" min="1" />
-        <button class="add-to-cart" onclick="addToCart('عرض بكجين مع معالج هدية', 25000, this)">أضف للسلة</button>
+        <h3>بكجين + معالج مجاني</h3>
+        <p class="price">السعر: 40000 د.ع</p>
+        <input type="number" min="1" value="1" class="quantity" />
+        <button onclick="addToCart('بكجين + معالج مجاني', 40000, this)">أضف إلى السلة</button>
       </div>
 
-      <!-- عرض المعالجين + معالج هدية -->
+      <!-- معالجين + معالج هدية -->
       <div class="offer-card">
-        <div class="slider" data-index="0">
-          <button class="prev" aria-label="السابق">&#10094;</button>
-          <button class="next" aria-label="التالي">&#10095;</button>
-          <img src="https://i.ibb.co/M2TXS9m/offer2.png" alt="عرض المعالجين + معالج هدية" />
+        <div class="image-slider" data-index="0">
+          <img src="https://i.imgur.com/pjpKIs3.png" class="active" alt="عرض معالجين + معالج هدية صورة 1" />
+          <img src="https://i.imgur.com/rJFQczb.png" alt="عرض معالجين + معالج هدية صورة 2" />
+          <div class="slider-controls">
+            <button onclick="prevImage(this)">‹</button>
+            <button onclick="nextImage(this)">›</button>
+          </div>
         </div>
-        <h3>عرض المعالجين + معالج هدية</h3>
-        <p class="price">22000</p>
-        <input class="quantity" type="number" value="1" min="1" />
-        <button class="add-to-cart" onclick="addToCart('عرض المعالجين + معالج هدية', 22000, this)">أضف للسلة</button>
+        <h3>معالجين + معالج هدية</h3>
+        <p class="price">السعر: 25000 د.ع</p>
+        <input type="number" min="1" value="1" class="quantity" />
+        <button onclick="addToCart('معالجين + معالج هدية', 25000, this)">أضف إلى السلة</button>
       </div>
 
     </div>
 
+    <h2>سلة المشتريات</h2>
     <div id="cart">
-      <h2>سلة المشتريات</h2>
-      <table id="cart-table">
+      <table>
         <thead>
           <tr>
             <th>المنتج</th>
             <th>الكمية</th>
-            <th>السعر</th>
+            <th>السعر لكل وحدة</th>
             <th>الإجمالي</th>
+            <th>حذف</th>
           </tr>
         </thead>
-        <tbody>
-          <tr><td colspan="4">السلة فارغة</td></tr>
+        <tbody id="cart-items">
+          <!-- عناصر السلة ستظهر هنا -->
         </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3" style="text-align: left; font-weight: 700;">المجموع الكلي</td>
+            <td id="total-price">0 د.ع</td>
+            <td></td>
+          </tr>
+        </tfoot>
       </table>
     </div>
+
+    <h2>كيفية الطلب</h2>
+    <form id="order-form">
+      <label for="name">الاسم الكامل:</label>
+      <input type="text" id="name" name="name" required placeholder="اكتب اسمك الكامل" />
+
+      <label for="phone">رقم الهاتف (العراق):</label>
+      <input type="tel" id="phone" name="phone" required pattern="07[0-9]{8}" placeholder="مثال: 07881556110" />
+
+      <label for="address">العنوان:</label>
+      <input type="text" id="address" name="address" required placeholder="اكتب عنوان التوصيل" />
+
+      <button type="submit">إرسال الطلب</button>
+    </form>
 
   </main>
 
   <footer>
-    <p>تابعونا على 
-      <a href="https://www.instagram.com/rimas_beauty1" target="_blank" rel="noopener noreferrer">إنستغرام</a> |
-      <a href="https://www.tiktok.com/@rimas_beauty.co" target="_blank" rel="noopener noreferrer">تيك توك</a>
-    </p>
+    تواصل معنا على 
+    <a href="https://www.instagram.com/rimas_beauty1" target="_blank">إنستغرام</a> |
+    <a href="https://www.tiktok.com/@rimas_beauty.co" target="_blank">تيك توك</a> |
+    هاتف: 07881556110 (العراق)
   </footer>
 
-  <div id="lightbox" onclick="closeLightbox()">
-    <img src="" alt="تكبير الصورة" />
-  </div>
-
   <script>
-    // الصور المتعددة لكل منتج (اضف صور في المصفوفة لكل slider)
-    const productImages = [
-      [ // بكج المعالجة الكامل
-        'https://i.ibb.co/0cqY6rm/JHhmAQP.png',
-        'https://i.ibb.co/gJ6sSwR/4IJNvXZ.png',
-        'https://i.ibb.co/qB2t9mF/uJXeRpo.png'
-      ],
-      [ // المشط المغناطيسي
-        'https://i.ibb.co/GsOENhE/GsOENhE.png',
-        'https://i.ibb.co/5jjoF1C/5jjoF1C.png'
-      ],
-      [ // معالج اليانسون
-        'https://i.ibb.co/K2Yyyt5/K2Yyyt5.png',
-        'https://i.ibb.co/5BGZHOr/5BGZHOr.png',
-        'https://i.ibb.co/6gN7P6U/6gN7P6U.png'
-      ],
-      [ // عرض بكجين مع معالج هدية
-        'https://i.ibb.co/hwLJiT9/hwLJiT9.png',
-        'https://i.ibb.co/qkyaV64/qkyaV64.png'
-      ],
-      [ // عرض المعالجين + معالج هدية
-        'https://i.ibb.co/pjpKIs3/pjpKIs3.png',
-        'https://i.ibb.co/rJFQczb/rJFQczb.png'
-      ]
-    ];
-
-    // تهيئة السلايدر لكل منتج / عرض
-    document.querySelectorAll('.slider').forEach((slider, idx) => {
-      let currentIndex = 0;
-      const imgs = productImages[idx];
-      const imgElement = slider.querySelector('img');
-      const btnPrev = slider.querySelector('button.prev');
-      const btnNext = slider.querySelector('button.next');
-
-      // تحميل الصورة الأولى
-      imgElement.src = imgs[currentIndex];
-
-      btnPrev.onclick = e => {
-        e.stopPropagation();
-        currentIndex = (currentIndex - 1 + imgs.length) % imgs.length;
-        imgElement.src = imgs[currentIndex];
-      };
-      btnNext.onclick = e => {
-        e.stopPropagation();
-        currentIndex = (currentIndex + 1) % imgs.length;
-        imgElement.src = imgs[currentIndex];
-      };
-
-      // فتح الصورة مكبرة عند الضغط عليها
-      imgElement.onclick = () => {
-        openLightbox(imgs[currentIndex]);
-      };
-    });
-
-    // إضافة للـ Lightbox
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = lightbox.querySelector('img');
-    function openLightbox(src) {
-      lightboxImg.src = src;
-      lightbox.style.display = 'flex';
-    }
-    function closeLightbox() {
-      lightbox.style.display = 'none';
+    // إشعارات
+    function showNotification(msg) {
+      const notif = document.getElementById('notification');
+      notif.textContent = msg;
+      notif.style.display = 'block';
+      setTimeout(() => { notif.style.display = 'none'; }, 3000);
+      playClickSound();
     }
 
-    // عربة التسوق البسيطة
+    // الصوت عند الضغط
+    function playClickSound() {
+      const audio = new Audio('https://actions.google.com/sounds/v1/ui/click.ogg');
+      audio.play().catch(() => {});
+    }
+
+    // شيفرة عرض الصور (سلايدر)
+    function nextImage(btn) {
+      const slider = btn.closest('.image-slider');
+      let index = parseInt(slider.getAttribute('data-index'));
+      const images = slider.querySelectorAll('img');
+      images[index].classList.remove('active');
+      index = (index + 1) % images.length;
+      images[index].classList.add('active');
+      slider.setAttribute('data-index', index);
+      playClickSound();
+    }
+
+    function prevImage(btn) {
+      const slider = btn.closest('.image-slider');
+      let index = parseInt(slider.getAttribute('data-index'));
+      const images = slider.querySelectorAll('img');
+      images[index].classList.remove('active');
+      index = (index - 1 + images.length) % images.length;
+      images[index].classList.add('active');
+      slider.setAttribute('data-index', index);
+      playClickSound();
+    }
+
+    // السلة
     let cart = [];
 
     function addToCart(name, price, btn) {
-      const card = btn.closest('.product-card, .offer-card');
-      const qtyInput = card.querySelector('.quantity');
-      let qty = parseInt(qtyInput.value);
-      if (isNaN(qty) || qty < 1) {
-        alert('الرجاء إدخال كمية صحيحة');
+      const quantityInput = btn.previousElementSibling;
+      let quantity = parseInt(quantityInput.value);
+      if (quantity < 1 || isNaN(quantity)) {
+        showNotification('الكمية غير صحيحة!');
         return;
       }
 
-      // تحقق إذا المنتج موجود بالسلة مسبقا
-      let found = cart.find(item => item.name === name);
-      if (found) {
-        found.qty += qty;
+      // تحقق إذا المنتج موجود بالسلة
+      let existing = cart.find(item => item.name === name);
+      if (existing) {
+        existing.quantity += quantity;
       } else {
-        cart.push({name: name, price: price, qty: qty});
+        cart.push({name, price, quantity});
       }
-      updateCartTable();
-      showNotification(`تم إضافة ${qty} من "${name}" إلى السلة`);
-      qtyInput.value = 1;
+      updateCart();
+      showNotification('تمت إضافة المنتج للسلة');
+      quantityInput.value = 1;
     }
 
-    function updateCartTable() {
-      const tbody = document.querySelector('#cart-table tbody');
+    function updateCart() {
+      const tbody = document.getElementById('cart-items');
       tbody.innerHTML = '';
-      if (cart.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="4">السلة فارغة</td></tr>';
+      let total = 0;
+      cart.forEach((item, index) => {
+        const tr = document.createElement('tr');
+
+        const tdName = document.createElement('td');
+        tdName.textContent = item.name;
+        tr.appendChild(tdName);
+
+        const tdQuantity = document.createElement('td');
+        const qtyInput = document.createElement('input');
+        qtyInput.type = 'number';
+        qtyInput.min = '1';
+        qtyInput.value = item.quantity;
+        qtyInput.style.width = '60px';
+        qtyInput.addEventListener('change', e => {
+          let val = parseInt(e.target.value);
+          if (val < 1 || isNaN(val)) {
+            e.target.value = item.quantity;
+            showNotification('الكمية غير صحيحة!');
+          } else {
+            item.quantity = val;
+            updateCart();
+          }
+        });
+        tdQuantity.appendChild(qtyInput);
+        tr.appendChild(tdQuantity);
+
+        const tdPrice = document.createElement('td');
+        tdPrice.textContent = item.price + ' د.ع';
+        tr.appendChild(tdPrice);
+
+        const tdTotal = document.createElement('td');
+        const itemTotal = item.price * item.quantity;
+        tdTotal.textContent = itemTotal + ' د.ع';
+        tr.appendChild(tdTotal);
+
+        const tdRemove = document.createElement('td');
+        const btnRemove = document.createElement('button');
+        btnRemove.textContent = 'حذف';
+        btnRemove.style.backgroundColor = '#d32f2f';
+        btnRemove.onclick = () => {
+          cart.splice(index, 1);
+          updateCart();
+          showNotification('تم حذف المنتج');
+        };
+        tdRemove.appendChild(btnRemove);
+        tr.appendChild(tdRemove);
+
+        tbody.appendChild(tr);
+        total += itemTotal;
+      });
+
+      document.getElementById('total-price').textContent = total + ' د.ع';
+    }
+
+    // إرسال الطلب
+    document.getElementById('order-form').addEventListener('submit', function(e){
+      e.preventDefault();
+
+      if(cart.length === 0) {
+        showNotification('السلة فارغة! يرجى إضافة منتجات أولاً.');
         return;
       }
-      let total = 0;
+
+      const name = this.name.value.trim();
+      const phone = this.phone.value.trim();
+      const address = this.address.value.trim();
+
+      if(!name || !phone || !address) {
+        showNotification('يرجى تعبئة جميع الحقول');
+        return;
+      }
+
+      // تجهيز بيانات الطلب
+      let orderDetails = `طلب جديد من ${name}\nالهاتف: ${phone}\nالعنوان: ${address}\n\nالمنتجات:\n`;
       cart.forEach(item => {
-        const row = document.createElement('tr');
-        const subtotal = item.price * item.qty;
-        total += subtotal;
-        row.innerHTML = `
-          <td>${item.name}</td>
-          <td>${item.qty}</td>
-          <td>${item.price.toLocaleString()} ريال</td>
-          <td>${subtotal.toLocaleString()} ريال</td>
-        `;
-        tbody.appendChild(row);
+        orderDetails += `${item.name} - الكمية: ${item.quantity} - السعر للوحدة: ${item.price} د.ع\n`;
       });
-      // إضافة صف الإجمالي
-      const totalRow = document.createElement('tr');
-      totalRow.innerHTML = `
-        <td colspan="3" style="font-weight:bold; text-align: left;">الإجمالي</td>
-        <td style="font-weight:bold;">${total.toLocaleString()} ريال</td>
-      `;
-      tbody.appendChild(totalRow);
-    }
+      orderDetails += `\nالمجموع الكلي: ${document.getElementById('total-price').textContent}`;
 
-    // إشعار إضافة المنتج
-    function showNotification(msg) {
-      const notification = document.getElementById('notification');
-      notification.textContent = msg;
-      notification.style.display = 'block';
-      setTimeout(() => {
-        notification.style.display = 'none';
-      }, 2500);
-    }
+      // استخدم هذا المكان لإرسال البيانات إلى بريدك الإلكتروني أو API
+      // هنا فقط عرض رسالة نجاح:
+      alert('تم إرسال طلبك بنجاح!\n\n' + orderDetails);
+
+      // إعادة تعيين السلة والنموذج
+      cart = [];
+      updateCart();
+      this.reset();
+    });
   </script>
-
 </body>
 </html>
