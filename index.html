@@ -66,15 +66,13 @@ input.quantity {
   margin: 10px 0;
 }
 button {
-  background-color: #008080; color: white;
   border: none; padding: 8px 12px;
   border-radius: 5px; cursor: pointer;
   font-size: 14px;
   margin: 2px;
 }
-button:hover { background-color: #004d40; }
-button.whatsapp { background: #25D366; }
-
+button.add { background-color: #008080; color: white; }
+button.add:hover { background-color: #004d40; }
 #cart {
   background: #b2dfdbcc;
   padding: 10px;
@@ -93,21 +91,27 @@ button.whatsapp { background: #25D366; }
   text-align: center;
   font-size: 14px;
 }
-footer {
-  text-align: center;
-  padding: 12px;
-  background-color: #008080cc;
-  color: white;
-  font-size: 14px;
+form.orderForm {
+  background:#e0f2f1;
+  padding:15px;
+  border-radius:10px;
+  margin-bottom:30px;
 }
-
-/* تحسين للموبايل */
-@media (max-width: 600px) {
-  header h1 { font-size: 18px; }
-  .card { padding: 10px; }
-  .card h3 { font-size: 16px; }
-  .card p.price { font-size: 14px; }
-  button { font-size: 13px; padding: 7px 10px; }
+form.orderForm label {
+  display:block;
+  margin:8px 0 4px;
+}
+form.orderForm input, form.orderForm select {
+  width:100%;
+  padding:8px;
+  border-radius:5px;
+  border:1px solid #004d40;
+}
+form.orderForm button {
+  margin-top:10px;
+  background:#25D366;
+  color:white;
+  width:100%;
 }
 .socials {
   text-align: center;
@@ -119,6 +123,26 @@ footer {
   color: white;
   font-weight: bold;
 }
+#notify {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #008080cc;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  display: none;
+  z-index: 1000;
+}
+@media (max-width:600px){
+  header h1{font-size:18px;}
+  .card{padding:10px;}
+  .card h3{font-size:16px;}
+  .card p.price{font-size:14px;}
+  button{font-size:13px;padding:7px 10px;}
+}
 </style>
 </head>
 <body>
@@ -129,6 +153,8 @@ footer {
 
 <main>
 
+<div id="notify"></div>
+
 <h2>منتجاتنا</h2>
 <div class="grid" id="productsGrid">
   <div class="card">
@@ -136,32 +162,21 @@ footer {
     <h3>بكج المعالجة الكامل</h3>
     <p class="price">20000 د.ع</p>
     <input class="quantity" type="number" value="1" min="1" />
-    <div>
-      <button onclick="addToCart('بكج المعالجة الكامل', 20000, this)">أضف للسلة</button>
-      <button class="whatsapp" onclick="sendWhatsApp('بكج المعالجة الكامل', 20000, this)">واتساب</button>
-    </div>
+    <button class="add" onclick="addToCart('بكج المعالجة الكامل',20000,this)">أضف للسلة</button>
   </div>
-
   <div class="card">
     <img src="" alt="صورة المنتج" />
     <h3>المشط المغناطيسي</h3>
     <p class="price">15000 د.ع</p>
     <input class="quantity" type="number" value="1" min="1" />
-    <div>
-      <button onclick="addToCart('المشط المغناطيسي', 15000, this)">أضف للسلة</button>
-      <button class="whatsapp" onclick="sendWhatsApp('المشط المغناطيسي', 15000, this)">واتساب</button>
-    </div>
+    <button class="add" onclick="addToCart('المشط المغناطيسي',15000,this)">أضف للسلة</button>
   </div>
-
   <div class="card">
     <img src="" alt="صورة المنتج" />
     <h3>معالج اليانسون</h3>
     <p class="price">13000 د.ع</p>
     <input class="quantity" type="number" value="1" min="1" />
-    <div>
-      <button onclick="addToCart('معالج اليانسون', 13000, this)">أضف للسلة</button>
-      <button class="whatsapp" onclick="sendWhatsApp('معالج اليانسون', 13000, this)">واتساب</button>
-    </div>
+    <button class="add" onclick="addToCart('معالج اليانسون',13000,this)">أضف للسلة</button>
   </div>
 </div>
 
@@ -172,32 +187,21 @@ footer {
     <h3>اشترِ 2 معالج اليانسون واحصل على الثالث مجاناً</h3>
     <p class="price">25000 د.ع</p>
     <input class="quantity" type="number" value="1" min="1" />
-    <div>
-      <button onclick="addToCart('عرض 2+1 معالج', 25000, this)">أضف للسلة</button>
-      <button class="whatsapp" onclick="sendWhatsApp('عرض 2+1 معالج', 25000, this)">واتساب</button>
-    </div>
+    <button class="add" onclick="addToCart('عرض 2+1 معالج',25000,this)">أضف للسلة</button>
   </div>
-
   <div class="card">
     <img src="" alt="صورة العرض" />
     <h3>اشترِ 2 بكج واحصل على معالج مجاني</h3>
     <p class="price">40000 د.ع</p>
     <input class="quantity" type="number" value="1" min="1" />
-    <div>
-      <button onclick="addToCart('عرض بكجين + معالج', 40000, this)">أضف للسلة</button>
-      <button class="whatsapp" onclick="sendWhatsApp('عرض بكجين + معالج', 40000, this)">واتساب</button>
-    </div>
+    <button class="add" onclick="addToCart('عرض بكجين + معالج',40000,this)">أضف للسلة</button>
   </div>
-
   <div class="card">
     <img src="" alt="صورة العرض" />
     <h3>اشتري 2 مشط مغناطيسي بسعر 25000</h3>
     <p class="price">25000 د.ع</p>
     <input class="quantity" type="number" value="1" min="1" />
-    <div>
-      <button onclick="addToCart('عرض 2 مشط', 25000, this)">أضف للسلة</button>
-      <button class="whatsapp" onclick="sendWhatsApp('عرض 2 مشط', 25000, this)">واتساب</button>
-    </div>
+    <button class="add" onclick="addToCart('عرض 2 مشط',25000,this)">أضف للسلة</button>
   </div>
 </div>
 
@@ -218,6 +222,31 @@ footer {
   <p><strong>المجموع الكلي: <span id="total">0</span> د.ع</strong></p>
 </div>
 
+<h2>بيانات الطلب</h2>
+<form class="orderForm" onsubmit="sendOrder(event)">
+  <label>الاسم:</label>
+  <input type="text" id="customerName" required placeholder="أدخل اسمك" />
+  
+  <label>رقم الهاتف:</label>
+  <input type="text" id="customerPhone" required value="07881556110" />
+  
+  <label>المحافظة:</label>
+  <select id="customerCity" required>
+    <option value="">اختر المحافظة</option>
+    <option value="بغداد">بغداد</option>
+    <option value="البصرة">البصرة</option>
+    <option value="النجف">النجف</option>
+    <option value="بابل">بابل</option>
+    <option value="كربلاء">كربلاء</option>
+    <option value="أخرى">أخرى</option>
+  </select>
+  
+  <label>المنطقة:</label>
+  <input type="text" id="customerArea" required placeholder="أدخل المنطقة" />
+  
+  <button type="submit">إرسال الطلب عبر WhatsApp</button>
+</form>
+
 <div class="socials">
   <a href="https://www.tiktok.com/@rimas_beauty.co" target="_blank">تيك توك</a> |
   <a href="https://www.instagram.com/remas_beauty1" target="_blank">إنستغرام</a>
@@ -230,74 +259,89 @@ footer {
 </footer>
 
 <script>
-let cartItems = JSON.parse(localStorage.getItem('cart') || '[]');
+let cartItems = JSON.parse(localStorage.getItem('cart')||'[]');
 
-const soundAdd = new Audio('https://actions.google.com/sounds/v1/cart/cart_add_item.ogg');
-const soundRemove = new Audio('https://actions.google.com/sounds/v1/cart/cart_remove_item.ogg');
-const soundUpdate = new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg');
+const soundAdd=new Audio('https://actions.google.com/sounds/v1/cart/cart_add_item.ogg');
+const soundRemove=new Audio('https://actions.google.com/sounds/v1/cart/cart_remove_item.ogg');
+const soundUpdate=new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg');
 
-function addToCart(name, price, btn) {
-  const quantity = parseInt(btn.parentElement.previousElementSibling.value);
-  if (isNaN(quantity) || quantity < 1) return alert("الكمية غير صالحة");
+function showNotify(msg){
+  const n=document.getElementById('notify');
+  n.textContent=msg;
+  n.style.display='block';
+  setTimeout(()=>n.style.display='none',2000);
+}
 
-  const existing = cartItems.find(item => item.name === name);
-  if (existing) existing.quantity += quantity;
-  else cartItems.push({ name, price, quantity });
-
+function addToCart(name,price,btn){
+  const quantity=parseInt(btn.previousElementSibling.value);
+  if(isNaN(quantity)||quantity<1) return alert("الكمية غير صالحة");
+  const existing=cartItems.find(i=>i.name===name);
+  if(existing) existing.quantity+=quantity;
+  else cartItems.push({name,price,quantity});
   updateCartTable();
   soundAdd.play().catch(()=>{});
-  btn.parentElement.previousElementSibling.value = 1;
+  btn.previousElementSibling.value=1;
   saveCart();
+  showNotify(`${name} تمت إضافته للسلة`);
 }
 
-function sendWhatsApp(name, price, btn){
-  const quantity = parseInt(btn.parentElement.previousElementSibling.value);
-  if(isNaN(quantity)||quantity<1) return alert("الكمية غير صالحة");
-  const msg = `مرحباً، أود طلب ${quantity} من ${name}`;
-  const phone = '+9647881556110';
-  const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
-  window.open(url, '_blank');
-}
-
-function updateCartTable() {
-  const tbody = document.querySelector('#cartTable tbody');
-  tbody.innerHTML = '';
-  let total = 0;
-
-  cartItems.forEach((item, index) => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
+function updateCartTable(){
+  const tbody=document.querySelector('#cartTable tbody');
+  tbody.innerHTML='';
+  let total=0;
+  cartItems.forEach((item,index)=>{
+    const row=document.createElement('tr');
+    row.innerHTML=`
       <td>${item.name}</td>
       <td><input type="number" min="1" value="${item.quantity}" onchange="updateQuantity(${index}, this.value)" /></td>
-      <td>${item.price * item.quantity} د.ع</td>
+      <td>${item.price*item.quantity} د.ع</td>
       <td><button onclick="updateQuantity(${index}, prompt('أدخل الكمية الجديدة:', ${item.quantity}))">✏️</button></td>
       <td><button onclick="removeItem(${index})" style="background:#d32f2f;color:white">🗑️</button></td>
     `;
-    total += item.price * item.quantity;
+    total+=item.price*item.quantity;
     tbody.appendChild(row);
   });
-
-  document.getElementById('total').textContent = total;
+  document.getElementById('total').textContent=total;
 }
 
-function removeItem(index) {
+function removeItem(index){
+  const name=cartItems[index].name;
   cartItems.splice(index,1);
   updateCartTable();
   soundRemove.play().catch(()=>{});
   saveCart();
+  showNotify(`${name} تم حذفه من السلة`);
 }
 
-function updateQuantity(index, newQuantity) {
-  newQuantity = parseInt(newQuantity);
+function updateQuantity(index,newQuantity){
+  newQuantity=parseInt(newQuantity);
   if(isNaN(newQuantity)||newQuantity<1) return alert("الكمية غير صالحة");
-  cartItems[index].quantity = newQuantity;
+  cartItems[index].quantity=newQuantity;
   updateCartTable();
   soundUpdate.play().catch(()=>{});
   saveCart();
+  showNotify(`${cartItems[index].name} تم تحديث الكمية`);
 }
 
-function saveCart() {
-  localStorage.setItem('cart', JSON.stringify(cartItems));
+function saveCart(){
+  localStorage.setItem('cart',JSON.stringify(cartItems));
+}
+
+function sendOrder(e){
+  e.preventDefault();
+  if(cartItems.length===0){alert("السلة فارغة!"); return;}
+  const name=document.getElementById('customerName').value;
+  const phone=document.getElementById('customerPhone').value;
+  const city=document.getElementById('customerCity').value;
+  const area=document.getElementById('customerArea').value;
+
+  let msg=`مرحباً، أود طلب المنتجات التالية:\n`;
+  cartItems.forEach(i=>{
+    msg+=`${i.name} - ${i.quantity} قطعة\n`;
+  });
+  msg+=`\nالاسم: ${name}\nرقم الهاتف: ${phone}\nالمحافظة: ${city}\nالمنطقة: ${area}`;
+  const url=`https://wa.me/+9647881556110?text=${encodeURIComponent(msg)}`;
+  window.open(url,'_blank');
 }
 
 updateCartTable();
