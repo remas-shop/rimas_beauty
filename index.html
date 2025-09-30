@@ -7,10 +7,10 @@
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
-* { box-sizing: border-box; }
+
+* { box-sizing: border-box; margin:0; padding:0; }
 body {
   font-family: 'Cairo', sans-serif;
-  margin: 0; padding: 0;
   background: #f9f9f9;
   color: #004d40;
   min-height: 100vh;
@@ -19,125 +19,106 @@ body {
 }
 header {
   background-color: #008080cc;
-  padding: 10px 20px;
+  padding: 15px 20px;
   color: white;
   text-align: center;
 }
-header h1 { font-size: 22px; margin: 0; }
-main {
-  max-width: 1200px;
-  margin: 10px auto;
-  padding: 10px;
+header h1 { font-size: 24px; margin-bottom: 10px; }
+
+/* بانر مميز أسفل الشعار */
+#banner {
+  background: linear-gradient(135deg, #4db6ac, #00796b);
+  color: white;
+  text-align: center;
+  padding: 20px 10px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
+#banner span.highlight {
+  background-color: #25D366;
+  padding: 3px 8px;
+  border-radius: 5px;
+}
+
+/* باقي التصميم */
+main { max-width: 1200px; margin: 10px auto; padding: 10px; }
 h2 { text-align: center; margin: 20px 0; color:#00695c; }
 
-/* الشبكة للمنتجات والعروض */
 .grid {
   display: grid;
   gap: 15px;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }
 .card {
   background: #e0f2f1;
-  border-radius: 8px;
+  border-radius: 12px;
   padding: 15px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   text-align: center;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .card:hover {
   transform: scale(1.03);
-  box-shadow: 0 6px 15px rgba(0,128,128,0.4);
+  box-shadow: 0 8px 20px rgba(0,128,128,0.4);
 }
 .card img {
   width: 100%;
   height: 200px;
   object-fit: contain;
   margin-bottom: 10px;
-  background: #b2dfdbcc; /* مكان فارغ للصورة */
+  background: #b2dfdbcc;
 }
 .card h3 { margin: 10px 0; font-size: 18px; }
-.card p.price {
-  font-weight: bold; color: #00796b;
-  font-size: 16px;
-}
-input.quantity {
-  width: 60px; text-align: center;
-  margin: 10px 0;
-}
-button {
-  border: none; padding: 8px 12px;
-  border-radius: 5px; cursor: pointer;
-  font-size: 14px;
-  margin: 2px;
-}
+.card p.price { font-weight: bold; color: #00796b; font-size: 16px; }
+input.quantity { width: 60px; text-align: center; margin:10px 0; }
+button { border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; font-size: 14px; margin:2px; }
 button.add { background-color: #008080; color: white; }
 button.add:hover { background-color: #004d40; }
-#cart {
-  background: #b2dfdbcc;
-  padding: 10px;
-  border-radius: 10px;
-  margin: 20px 0;
-  overflow-x: auto;
-}
-#cart table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 400px;
-}
-#cart th, #cart td {
-  border: 1px solid #004d40;
-  padding: 6px;
-  text-align: center;
-  font-size: 14px;
-}
+
+#cart { background: #b2dfdbcc; padding: 10px; border-radius: 12px; margin: 20px 0; overflow-x: auto; }
+#cart table { width: 100%; border-collapse: collapse; min-width: 400px; }
+#cart th, #cart td { border: 1px solid #004d40; padding: 6px; text-align: center; font-size: 14px; }
+
 form.orderForm {
   background:#e0f2f1;
   padding:15px;
-  border-radius:10px;
+  border-radius:12px;
   margin-bottom:30px;
 }
-form.orderForm label {
-  display:block;
-  margin:8px 0 4px;
-}
+form.orderForm label { display:block; margin:8px 0 4px; }
 form.orderForm input, form.orderForm select {
-  width:100%;
-  padding:8px;
-  border-radius:5px;
-  border:1px solid #004d40;
+  width:100%; padding:8px; border-radius:5px; border:1px solid #004d40;
 }
 form.orderForm button {
   margin-top:10px;
   background:#25D366;
   color:white;
   width:100%;
+  font-size:16px;
+  font-weight:bold;
 }
-.socials {
-  text-align: center;
-  margin: 15px 0;
-}
-.socials a {
-  margin: 0 10px;
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-}
+.socials { text-align:center; margin:15px 0; }
+.socials a { margin: 0 10px; text-decoration: none; color: white; font-weight: bold; }
+
 #notify {
-  position: fixed;
-  top: 10px;
-  left: 50%;
+  position: fixed; top: 10px; left: 50%;
   transform: translateX(-50%);
   background: #008080cc;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-weight: bold;
-  display: none;
-  z-index: 1000;
+  color: white; padding: 10px 20px;
+  border-radius: 8px; font-weight: bold;
+  display: none; z-index: 1000;
 }
-@media (max-width:600px){
+
+@media (max-width: 900px){ .grid { grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); } }
+@media (max-width: 600px){
   header h1{font-size:18px;}
+  #banner{font-size:16px;padding:15px;}
   .card{padding:10px;}
   .card h3{font-size:16px;}
   .card p.price{font-size:14px;}
@@ -150,6 +131,11 @@ form.orderForm button {
 <header>
   <h1>ريماس للصحة والجمال</h1>
 </header>
+
+<!-- بانر مميز أسفل الشعار -->
+<div id="banner">
+  اكتشف قوة <span class="highlight">المشط المغناطيسي</span> مع <span class="highlight">معالج اليانسون</span> لشعرك الصحي والجميل من الجذور حتى الأطراف!
+</div>
 
 <main>
 
@@ -235,10 +221,22 @@ form.orderForm button {
     <option value="">اختر المحافظة</option>
     <option value="بغداد">بغداد</option>
     <option value="البصرة">البصرة</option>
+    <option value="الموصل">الموصل</option>
+    <option value="أربيل">أربيل</option>
+    <option value="كركوك">كركوك</option>
     <option value="النجف">النجف</option>
     <option value="بابل">بابل</option>
     <option value="كربلاء">كربلاء</option>
-    <option value="أخرى">أخرى</option>
+    <option value="ديالى">ديالى</option>
+    <option value="ميسان">ميسان</option>
+    <option value="ذي قار">ذي قار</option>
+    <option value="القادسية">القادسية</option>
+    <option value="الانبار">الانبار</option>
+    <option value="صلاح الدين">صلاح الدين</option>
+    <option value="واسط">واسط</option>
+    <option value="دهوك">دهوك</option>
+    <option value="السليمانية">السليمانية</option>
+    <option value="نينوى">نينوى</option>
   </select>
   
   <label>المنطقة:</label>
@@ -323,9 +321,7 @@ function updateQuantity(index,newQuantity){
   showNotify(`${cartItems[index].name} تم تحديث الكمية`);
 }
 
-function saveCart(){
-  localStorage.setItem('cart',JSON.stringify(cartItems));
-}
+function saveCart(){ localStorage.setItem('cart',JSON.stringify(cartItems)); }
 
 function sendOrder(e){
   e.preventDefault();
@@ -336,9 +332,7 @@ function sendOrder(e){
   const area=document.getElementById('customerArea').value;
 
   let msg=`مرحباً، أود طلب المنتجات التالية:\n`;
-  cartItems.forEach(i=>{
-    msg+=`${i.name} - ${i.quantity} قطعة\n`;
-  });
+  cartItems.forEach(i=>{ msg+=`${i.name} - ${i.quantity} قطعة\n`; });
   msg+=`\nالاسم: ${name}\nرقم الهاتف: ${phone}\nالمحافظة: ${city}\nالمنطقة: ${area}`;
   const url=`https://wa.me/+9647881556110?text=${encodeURIComponent(msg)}`;
   window.open(url,'_blank');
