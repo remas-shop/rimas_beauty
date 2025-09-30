@@ -6,7 +6,6 @@
 <title>ريماس للصحة والجمال</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
-
 * { box-sizing: border-box; margin:0; padding:0; }
 body {
   font-family: 'Cairo', sans-serif;
@@ -26,30 +25,13 @@ header {
 }
 header img.logo { height:50px; margin-bottom:10px; border-radius:10px; }
 
-#banner {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-}
-.bannerImage {
-  width: 100%;
-  height: auto;
-  display: block;
-}
+#banner { position: relative; width: 100%; overflow: hidden; }
+.bannerImage { width: 100%; height: auto; display: block; }
 .bannerText {
-  position: absolute;
-  bottom: 15px;
-  left: 50%;
+  position: absolute; bottom: 15px; left: 50%;
   transform: translateX(-50%);
-  color: white;
-  font-weight: bold;
-  font-size: 20px;
-  text-align: center;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
-  background: rgba(0,0,0,0);
-  padding: 8px 12px;
-  border-radius: 8px;
-  line-height: 1.4;
+  color: white; font-weight: bold; font-size: 20px; text-align: center;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.7); background: rgba(0,0,0,0); padding: 8px 12px; border-radius: 8px; line-height: 1.4;
 }
 
 main { max-width: 1200px; margin: 10px auto; padding: 10px; flex:1; }
@@ -67,14 +49,9 @@ h2 { text-align: center; margin: 20px 0; color:#00695c; }
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: flex; flex-direction: column; justify-content: space-between;
 }
-.card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 8px 20px rgba(0,128,128,0.4);
-}
+.card:hover { transform: scale(1.03); box-shadow: 0 8px 20px rgba(0,128,128,0.4); }
 .card img { width:100%; height:200px; object-fit:contain; margin-bottom:10px; border-radius:10px; background:#b2dfdbcc; }
 
 .card h3 { margin: 10px 0; font-size: 18px; }
@@ -89,12 +66,7 @@ button.add:hover { background-color: #004d40; }
 #cart th,#cart td { border:1px solid #004d40; padding:6px; text-align:center; font-size:14px; }
 #cart button.clearCart { background:#d32f2f; color:white; width:100%; margin-top:10px; }
 
-form.orderForm {
-  background:#e0f2f1;
-  padding:15px;
-  border-radius:12px;
-  margin-bottom:30px;
-}
+form.orderForm { background:#e0f2f1; padding:15px; border-radius:12px; margin-bottom:30px; }
 form.orderForm label { display:block; margin:8px 0 4px; font-weight:bold; }
 form.orderForm input, form.orderForm select {
   width:100%; padding:10px; border-radius:5px; border:1px solid #004d40;
@@ -102,49 +74,29 @@ form.orderForm input, form.orderForm select {
 }
 form.orderForm button {
   margin-top:10px;
-  background:#25D366;
-  color:white;
-  width:100%;
-  font-size:16px;
-  font-weight:bold;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
+  background:#25D366; color:white; width:100%;
+  font-size:16px; font-weight:bold; display:flex;
+  align-items:center; justify-content:center; gap:10px;
 }
 
 .socials { text-align:center; margin:15px 0; font-weight:bold; }
 .socials a {
-  margin:0 10px;
-  text-decoration:none;
-  color:white;
-  background:#008080;
-  padding:8px 12px;
-  border-radius:50%;
-  display:inline-block;
-  width:40px; height:40px;
-  line-height:24px;
-  text-align:center;
-  transition:0.3s;
+  margin:0 10px; text-decoration:none; color:white;
+  background:#008080; padding:8px 12px; border-radius:50%;
+  display:inline-block; width:40px; height:40px;
+  line-height:24px; text-align:center; transition:0.3s;
 }
 .socials a:hover { background:#25D366; }
 
 #notify {
   position:fixed; top:10px; left:50%;
   transform:translateX(-50%);
-  background:#008080cc;
-  color:white; padding:10px 20px;
+  background:#008080cc; color:white; padding:10px 20px;
   border-radius:8px; font-weight:bold;
   display:none; z-index:1000;
 }
 
-footer {
-  text-align:center;
-  padding:12px;
-  background-color: #008080cc;
-  color:white;
-  font-size:14px;
-}
+footer { text-align:center; padding:12px; background-color: #008080cc; color:white; font-size:14px; }
 
 @media (max-width:900px){ .grid{ grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); } }
 @media(max-width:600px){
@@ -282,22 +234,24 @@ footer {
 
 <div class="socials">
   <a href="https://www.tiktok.com/@rimas_beauty.co" target="_blank">T</a>
-  <a href="https://www.instagram.com/remas_beauty1" target="_blank">I</a>
+  <a href="https://www.instagram.com/remas_beauty1/" target="_blank">I</a>
 </div>
 
 </main>
 
 <footer>
-جميع الحقوق محفوظة © 2025 ريماس للصحة والجمال
+  جميع الحقوق محفوظة © 2025 ريماس للصحة والجمال
 </footer>
 
 <script>
-let cartItems = [];
+let cartItems=[];
+
 const soundAdd=new Audio('https://actions.google.com/sounds/v1/cart/cart_add_item.ogg');
 const soundRemove=new Audio('https://actions.google.com/sounds/v1/cart/cart_remove_item.ogg');
 const soundUpdate=new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg');
 
 function showNotify(msg){const n=document.getElementById('notify'); n.textContent=msg; n.style.display='block'; setTimeout(()=>{n.style.display='none';},1500);}
+
 function addToCart(name,price,btn){
   const quantity=parseInt(btn.previousElementSibling.value);
   if(isNaN(quantity)||quantity<1) return alert("الكمية غير صالحة");
@@ -306,6 +260,7 @@ function addToCart(name,price,btn){
   else cartItems.push({name,price,quantity});
   updateCartTable(); soundAdd.play(); btn.previousElementSibling.value=1;
 }
+
 function updateCartTable(){
   const tbody=document.querySelector('#cartTable tbody'); tbody.innerHTML=''; let total=0;
   cartItems.forEach((item,index)=>{
@@ -320,9 +275,11 @@ function updateCartTable(){
   document.getElementById('total').textContent=total;
   localStorage.setItem('cart',JSON.stringify(cartItems));
 }
+
 function removeItem(index){cartItems.splice(index,1); updateCartTable(); soundRemove.play();}
 function updateQuantity(index,newQty){newQty=parseInt(newQty); if(isNaN(newQty)||newQty<1) return alert("الكمية غير صالحة"); cartItems[index].quantity=newQty; updateCartTable(); soundUpdate.play();}
 function clearCart(){cartItems=[]; updateCartTable();}
+
 function sendOrder(e){
   e.preventDefault();
   if(cartItems.length===0){ alert("السلة فارغة"); return; }
@@ -337,11 +294,12 @@ function sendOrder(e){
   const total=document.getElementById('total').textContent;
   message+=`\nالمجموع الكلي: ${total} د.ع`;
   
-  const waLink=`https://wa.me/9647881556110${phone.replace(/^0/,'')}?text=${encodeURIComponent(message)}`;
+  // ارسال الطلب دائمًا إلى رقمك الشخصي
+  const waLink=`https://wa.me/9647881556110?text=${encodeURIComponent(message)}`;
   window.open(waLink,'_blank');
 }
+
 updateCartTable();
 </script>
 </body>
 </html>
-
