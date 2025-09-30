@@ -10,7 +10,7 @@
 * { box-sizing: border-box; margin:0; padding:0; }
 body {
   font-family: 'Cairo', sans-serif;
-  background: #f9f9f9;
+  background: linear-gradient(to bottom, #f9f9f9, #e0f2f1);
   color: #004d40;
   min-height: 100vh;
   display: flex;
@@ -21,16 +21,14 @@ header {
   padding: 15px 20px;
   color: white;
   text-align: center;
+  width:100%;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
 }
 header img.logo { height:50px; margin-bottom:10px; border-radius:10px; }
 
-/* بانر محسّن */
 #banner {
   position: relative;
   width: 100%;
-  max-width: 1200px;
-  margin: 15px auto;
-  border-radius: 12px;
   overflow: hidden;
 }
 .bannerImage {
@@ -40,26 +38,21 @@ header img.logo { height:50px; margin-bottom:10px; border-radius:10px; }
 }
 .bannerText {
   position: absolute;
-  bottom: 10px;
+  bottom: 15px;
   left: 50%;
   transform: translateX(-50%);
   color: white;
   font-weight: bold;
   font-size: 20px;
   text-align: center;
-  background: rgba(0,0,0,0.0); /* إزالة الطبقة المظلمة */
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0);
   padding: 8px 12px;
   border-radius: 8px;
   line-height: 1.4;
 }
-.bannerText .highlight {
-  color: white; /* النص باللون الأبيض فقط */
-  background:none;
-  padding:0;
-  border-radius:0;
-}
 
-main { max-width: 1200px; margin: 10px auto; padding: 10px; }
+main { max-width: 1200px; margin: 10px auto; padding: 10px; flex:1; }
 h2 { text-align: center; margin: 20px 0; color:#00695c; }
 
 .grid {
@@ -68,7 +61,7 @@ h2 { text-align: center; margin: 20px 0; color:#00695c; }
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 .card {
-  background: #e0f2f1;
+  background: linear-gradient(to bottom, #e0f2f1, #ffffff);
   border-radius: 12px;
   padding: 15px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -92,7 +85,7 @@ button.add { background-color: #008080; color:white; }
 button.add:hover { background-color: #004d40; }
 
 #cart { background: #b2dfdbcc; padding: 10px; border-radius: 12px; margin: 20px 0; overflow-x:auto; }
-#cart table { width:100%; border-collapse: collapse; min-width: 400px; }
+#cart table { width:100%; border-collapse: collapse; min-width: 400px; background:#ffffff; }
 #cart th,#cart td { border:1px solid #004d40; padding:6px; text-align:center; font-size:14px; }
 #cart button.clearCart { background:#d32f2f; color:white; width:100%; margin-top:10px; }
 
@@ -102,9 +95,10 @@ form.orderForm {
   border-radius:12px;
   margin-bottom:30px;
 }
-form.orderForm label { display:block; margin:8px 0 4px; }
+form.orderForm label { display:block; margin:8px 0 4px; font-weight:bold; }
 form.orderForm input, form.orderForm select {
-  width:100%; padding:8px; border-radius:5px; border:1px solid #004d40;
+  width:100%; padding:10px; border-radius:5px; border:1px solid #004d40;
+  font-size:14px;
 }
 form.orderForm button {
   margin-top:10px;
@@ -113,6 +107,10 @@ form.orderForm button {
   width:100%;
   font-size:16px;
   font-weight:bold;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
 }
 
 .socials { text-align:center; margin:15px 0; font-weight:bold; }
@@ -122,7 +120,11 @@ form.orderForm button {
   color:white;
   background:#008080;
   padding:8px 12px;
-  border-radius:5px;
+  border-radius:50%;
+  display:inline-block;
+  width:40px; height:40px;
+  line-height:24px;
+  text-align:center;
   transition:0.3s;
 }
 .socials a:hover { background:#25D366; }
@@ -137,7 +139,7 @@ form.orderForm button {
 }
 
 footer {
-  text-align:center; /* جعل الحقوق في المنتصف */
+  text-align:center;
   padding:12px;
   background-color: #008080cc;
   color:white;
@@ -163,11 +165,10 @@ footer {
   <h1>ريماس للصحة والجمال</h1>
 </header>
 
-<!-- بانر محسّن -->
 <div id="banner">
   <img src="https://i.imgur.com/amF0F7w.png" alt="بانر ريماس" class="bannerImage" />
   <div class="bannerText">
-    اكتشف قوة <span class="highlight">المشط المغناطيسي</span> مع <span class="highlight">معالج اليانسون</span> لشعرك الصحي والجميل!
+    اكتشف قوة <span>المشط المغناطيسي</span> مع <span>معالج اليانسون</span> لشعرك الصحي والجميل!
   </div>
 </div>
 
@@ -202,14 +203,14 @@ footer {
 <h2>عروض خاصة</h2>
 <div class="grid">
   <div class="card">
-    <img src="https://i.imgur.com/pjpKIs3.png" alt="عرض البكجين" />
+    <img src="https://i.imgur.com/hwLJiT9.png" alt="عرض المعالجين" />
     <h3>اشترِ 2 معالج اليانسون واحصل على الثالث مجاناً</h3>
     <p class="price">25000 د.ع</p>
     <input class="quantity" type="number" value="1" min="1" />
     <button class="add" onclick="addToCart('عرض 2+1 معالج',25000,this)">أضف للسلة</button>
   </div>
   <div class="card">
-    <img src="https://i.imgur.com/hwLJiT9.png" alt="عرض المعالجين" />
+    <img src="https://i.imgur.com/pjpKIs3.png" alt="عرض البكجين" />
     <h3>اشترِ 2 بكج واحصل على معالج مجاني</h3>
     <p class="price">40000 د.ع</p>
     <input class="quantity" type="number" value="1" min="1" />
@@ -276,12 +277,12 @@ footer {
   <label>المنطقة:</label>
   <input type="text" id="customerArea" required placeholder="أدخل المنطقة" />
   
-  <button type="submit">إرسال الطلب عبر WhatsApp</button>
+  <button type="submit">📩 إرسال الطلب عبر WhatsApp</button>
 </form>
 
 <div class="socials">
-  <a href="https://www.tiktok.com/@rimas_beauty.co" target="_blank">تيك توك</a>
-  <a href="https://www.instagram.com/remas_beauty1" target="_blank">إنستغرام</a>
+  <a href="https://www.tiktok.com/@rimas_beauty.co" target="_blank">T</a>
+  <a href="https://www.instagram.com/remas_beauty1" target="_blank">I</a>
 </div>
 
 </main>
@@ -291,15 +292,20 @@ footer {
 </footer>
 
 <script>
-let cartItems = JSON.parse(localStorage.getItem('cart')||'[]');
+let cartItems = [];
 const soundAdd=new Audio('https://actions.google.com/sounds/v1/cart/cart_add_item.ogg');
 const soundRemove=new Audio('https://actions.google.com/sounds/v1/cart/cart_remove_item.ogg');
 const soundUpdate=new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg');
 
 function showNotify(msg){const n=document.getElementById('notify'); n.textContent=msg; n.style.display='block'; setTimeout(()=>{n.style.display='none';},1500);}
-
-function addToCart(name,price,btn){const quantity=parseInt(btn.previousElementSibling.value);if(isNaN(quantity)||quantity<1)return alert("الكمية غير صالحة");const existing=cartItems.find(i=>i.name===name);if(existing)existing.quantity+=quantity;else cartItems.push({name,price,quantity});updateCartTable();soundAdd.play();btn.previousElementSibling.value=1;}
-
+function addToCart(name,price,btn){
+  const quantity=parseInt(btn.previousElementSibling.value);
+  if(isNaN(quantity)||quantity<1) return alert("الكمية غير صالحة");
+  const existing=cartItems.find(i=>i.name===name);
+  if(existing) existing.quantity+=quantity;
+  else cartItems.push({name,price,quantity});
+  updateCartTable(); soundAdd.play(); btn.previousElementSibling.value=1;
+}
 function updateCartTable(){
   const tbody=document.querySelector('#cartTable tbody'); tbody.innerHTML=''; let total=0;
   cartItems.forEach((item,index)=>{
@@ -309,15 +315,13 @@ function updateCartTable(){
       <td>${item.price*item.quantity} د.ع</td>
       <td><button onclick="updateQuantity(${index}, prompt('أدخل الكمية الجديدة:', ${item.quantity}))">✏️</button></td>
       <td><button onclick="removeItem(${index})" style="background:#d32f2f;color:white">🗑️</button></td>`;
-    total+=item.price*item.quantity;
-    tbody.appendChild(row);
+    total+=item.price*item.quantity; tbody.appendChild(row);
   });
   document.getElementById('total').textContent=total;
   localStorage.setItem('cart',JSON.stringify(cartItems));
 }
-
-function removeItem(index){cartItems.splice(index,1);updateCartTable();soundRemove.play();}
-function updateQuantity(index,newQty){newQty=parseInt(newQty);if(isNaN(newQty)||newQty<1)return alert("الكمية غير صالحة");cartItems[index].quantity=newQty;updateCartTable();soundUpdate.play();}
+function removeItem(index){cartItems.splice(index,1); updateCartTable(); soundRemove.play();}
+function updateQuantity(index,newQty){newQty=parseInt(newQty); if(isNaN(newQty)||newQty<1) return alert("الكمية غير صالحة"); cartItems[index].quantity=newQty; updateCartTable(); soundUpdate.play();}
 function clearCart(){cartItems=[]; updateCartTable();}
 function sendOrder(e){
   e.preventDefault();
@@ -338,6 +342,5 @@ function sendOrder(e){
 }
 updateCartTable();
 </script>
-
 </body>
 </html>
