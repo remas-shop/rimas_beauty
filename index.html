@@ -4,7 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ريماس للصحة والجمال</title>
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
 
@@ -23,34 +22,40 @@ header {
   color: white;
   text-align: center;
 }
-header h1 { font-size: 24px; margin-bottom: 10px; }
+header img.logo { height:50px; margin-bottom:10px; border-radius:10px; }
 
-/* بانر مميز أسفل الشعار */
 #banner {
   background: linear-gradient(135deg, #4db6ac, #00796b);
   color: white;
   text-align: center;
-  padding: 20px 10px;
-  font-size: 18px;
+  padding: 25px 10px;
+  font-size: 20px;
   font-weight: bold;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  border-radius: 12px;
+  margin: 15px auto;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  background-image: url('https://i.imgur.com/A5jZOLP.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center top;
+  opacity:0;
+  transform: translateY(-10px);
+  animation: fadeIn 1s forwards;
 }
 #banner span.highlight {
   background-color: #25D366;
   padding: 3px 8px;
   border-radius: 5px;
 }
+@keyframes fadeIn { to { opacity:1; transform:translateY(0); } }
 
-/* باقي التصميم */
 main { max-width: 1200px; margin: 10px auto; padding: 10px; }
 h2 { text-align: center; margin: 20px 0; color:#00695c; }
 
 .grid {
   display: grid;
   gap: 15px;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 .card {
   background: #e0f2f1;
@@ -67,23 +72,19 @@ h2 { text-align: center; margin: 20px 0; color:#00695c; }
   transform: scale(1.03);
   box-shadow: 0 8px 20px rgba(0,128,128,0.4);
 }
-.card img {
-  width: 100%;
-  height: 200px;
-  object-fit: contain;
-  margin-bottom: 10px;
-  background: #b2dfdbcc;
-}
+.card img { width:100%; height:200px; object-fit:contain; margin-bottom:10px; border-radius:10px; background:#b2dfdbcc; }
+
 .card h3 { margin: 10px 0; font-size: 18px; }
 .card p.price { font-weight: bold; color: #00796b; font-size: 16px; }
-input.quantity { width: 60px; text-align: center; margin:10px 0; }
-button { border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; font-size: 14px; margin:2px; }
-button.add { background-color: #008080; color: white; }
+input.quantity { width:60px; text-align:center; margin:10px 0; }
+button { border:none; padding:8px 12px; border-radius:5px; cursor:pointer; font-size:14px; margin:2px; }
+button.add { background-color: #008080; color:white; }
 button.add:hover { background-color: #004d40; }
 
-#cart { background: #b2dfdbcc; padding: 10px; border-radius: 12px; margin: 20px 0; overflow-x: auto; }
-#cart table { width: 100%; border-collapse: collapse; min-width: 400px; }
-#cart th, #cart td { border: 1px solid #004d40; padding: 6px; text-align: center; font-size: 14px; }
+#cart { background: #b2dfdbcc; padding: 10px; border-radius: 12px; margin: 20px 0; overflow-x:auto; }
+#cart table { width:100%; border-collapse: collapse; min-width: 400px; }
+#cart th,#cart td { border:1px solid #004d40; padding:6px; text-align:center; font-size:14px; }
+#cart button.clearCart { background:#d32f2f; color:white; width:100%; margin-top:10px; }
 
 form.orderForm {
   background:#e0f2f1;
@@ -103,21 +104,32 @@ form.orderForm button {
   font-size:16px;
   font-weight:bold;
 }
-.socials { text-align:center; margin:15px 0; }
-.socials a { margin: 0 10px; text-decoration: none; color: white; font-weight: bold; }
+
+.socials { text-align:center; margin:15px 0; font-weight:bold; }
+.socials a {
+  margin:0 10px;
+  text-decoration:none;
+  color:white;
+  background:#008080;
+  padding:8px 12px;
+  border-radius:5px;
+  transition:0.3s;
+}
+.socials a:hover { background:#25D366; }
 
 #notify {
-  position: fixed; top: 10px; left: 50%;
-  transform: translateX(-50%);
-  background: #008080cc;
-  color: white; padding: 10px 20px;
-  border-radius: 8px; font-weight: bold;
-  display: none; z-index: 1000;
+  position:fixed; top:10px; left:50%;
+  transform:translateX(-50%);
+  background:#008080cc;
+  color:white; padding:10px 20px;
+  border-radius:8px; font-weight:bold;
+  display:none; z-index:1000;
 }
 
-@media (max-width: 900px){ .grid { grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); } }
-@media (max-width: 600px){
-  header h1{font-size:18px;}
+@media (max-width:900px){ .grid{ grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); } }
+@media (max-width:600px){
+  header img.logo{ height:40px; }
+  header h1{ font-size:18px; }
   #banner{font-size:16px;padding:15px;}
   .card{padding:10px;}
   .card h3{font-size:16px;}
@@ -129,36 +141,35 @@ form.orderForm button {
 <body>
 
 <header>
+  <img src="https://i.imgur.com/ixvkTnx.jpeg" alt="شعار ريماس" class="logo"/>
   <h1>ريماس للصحة والجمال</h1>
 </header>
 
-<!-- بانر مميز أسفل الشعار -->
 <div id="banner">
-  اكتشف قوة <span class="highlight">المشط المغناطيسي</span> مع <span class="highlight">معالج اليانسون</span> لشعرك الصحي والجميل من الجذور حتى الأطراف!
+اكتشف قوة <span class="highlight">المشط المغناطيسي</span> مع <span class="highlight">معالج اليانسون</span> لشعرك الصحي والجميل!
 </div>
 
 <main>
-
 <div id="notify"></div>
 
 <h2>منتجاتنا</h2>
 <div class="grid" id="productsGrid">
   <div class="card">
-    <img src="" alt="صورة المنتج" />
+    <img src="https://i.imgur.com/A5jZOLP.png" alt="بكج المعالجة الكامل" />
     <h3>بكج المعالجة الكامل</h3>
     <p class="price">20000 د.ع</p>
     <input class="quantity" type="number" value="1" min="1" />
     <button class="add" onclick="addToCart('بكج المعالجة الكامل',20000,this)">أضف للسلة</button>
   </div>
   <div class="card">
-    <img src="" alt="صورة المنتج" />
+    <img src="https://i.imgur.com/GsOENhE.png" alt="المشط المغناطيسي" />
     <h3>المشط المغناطيسي</h3>
     <p class="price">15000 د.ع</p>
     <input class="quantity" type="number" value="1" min="1" />
     <button class="add" onclick="addToCart('المشط المغناطيسي',15000,this)">أضف للسلة</button>
   </div>
   <div class="card">
-    <img src="" alt="صورة المنتج" />
+    <img src="https://i.imgur.com/K2Yyyt5.png" alt="معالج اليانسون" />
     <h3>معالج اليانسون</h3>
     <p class="price">13000 د.ع</p>
     <input class="quantity" type="number" value="1" min="1" />
@@ -169,21 +180,21 @@ form.orderForm button {
 <h2>عروض خاصة</h2>
 <div class="grid">
   <div class="card">
-    <img src="" alt="صورة العرض" />
+    <img src="https://i.imgur.com/hwLJiT9.png" alt="عرض البكجين" />
     <h3>اشترِ 2 معالج اليانسون واحصل على الثالث مجاناً</h3>
     <p class="price">25000 د.ع</p>
     <input class="quantity" type="number" value="1" min="1" />
     <button class="add" onclick="addToCart('عرض 2+1 معالج',25000,this)">أضف للسلة</button>
   </div>
   <div class="card">
-    <img src="" alt="صورة العرض" />
+    <img src="https://i.imgur.com/pjpKIs3.png" alt="عرض المعالجين" />
     <h3>اشترِ 2 بكج واحصل على معالج مجاني</h3>
     <p class="price">40000 د.ع</p>
     <input class="quantity" type="number" value="1" min="1" />
     <button class="add" onclick="addToCart('عرض بكجين + معالج',40000,this)">أضف للسلة</button>
   </div>
   <div class="card">
-    <img src="" alt="صورة العرض" />
+    <img src="https://i.imgur.com/GsOENhE.png" alt="عرض المشطين" />
     <h3>اشتري 2 مشط مغناطيسي بسعر 25000</h3>
     <p class="price">25000 د.ع</p>
     <input class="quantity" type="number" value="1" min="1" />
@@ -205,6 +216,7 @@ form.orderForm button {
     </thead>
     <tbody></tbody>
   </table>
+  <button class="clearCart" onclick="clearCart()">مسح السلة بالكامل</button>
   <p><strong>المجموع الكلي: <span id="total">0</span> د.ع</strong></p>
 </div>
 
@@ -214,7 +226,7 @@ form.orderForm button {
   <input type="text" id="customerName" required placeholder="أدخل اسمك" />
   
   <label>رقم الهاتف:</label>
-  <input type="text" id="customerPhone" required value="07881556110" />
+  <input type="text" id="customerPhone" required placeholder="أدخل رقم هاتفك" />
   
   <label>المحافظة:</label>
   <select id="customerCity" required>
@@ -246,7 +258,7 @@ form.orderForm button {
 </form>
 
 <div class="socials">
-  <a href="https://www.tiktok.com/@rimas_beauty.co" target="_blank">تيك توك</a> |
+  <a href="https://www.tiktok.com/@rimas_beauty.co" target="_blank">تيك توك</a>
   <a href="https://www.instagram.com/remas_beauty1" target="_blank">إنستغرام</a>
 </div>
 
@@ -258,7 +270,6 @@ form.orderForm button {
 
 <script>
 let cartItems = JSON.parse(localStorage.getItem('cart')||'[]');
-
 const soundAdd=new Audio('https://actions.google.com/sounds/v1/cart/cart_add_item.ogg');
 const soundRemove=new Audio('https://actions.google.com/sounds/v1/cart/cart_remove_item.ogg');
 const soundUpdate=new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg');
@@ -321,6 +332,13 @@ function updateQuantity(index,newQuantity){
   showNotify(`${cartItems[index].name} تم تحديث الكمية`);
 }
 
+function clearCart(){
+  cartItems=[];
+  updateCartTable();
+  saveCart();
+  showNotify("تم مسح السلة بالكامل");
+}
+
 function saveCart(){ localStorage.setItem('cart',JSON.stringify(cartItems)); }
 
 function sendOrder(e){
@@ -334,10 +352,10 @@ function sendOrder(e){
   let msg=`مرحباً، أود طلب المنتجات التالية:\n`;
   cartItems.forEach(i=>{ msg+=`${i.name} - ${i.quantity} قطعة\n`; });
   msg+=`\nالاسم: ${name}\nرقم الهاتف: ${phone}\nالمحافظة: ${city}\nالمنطقة: ${area}`;
-  const url=`https://wa.me/+9647881556110?text=${encodeURIComponent(msg)}`;
-  window.open(url,'_blank');
-}
 
+  const waLink=`https://wa.me/07881556110?text=${encodeURIComponent(msg)}`;
+  window.open(waLink,'_blank');
+}
 updateCartTable();
 </script>
 
