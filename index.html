@@ -6,142 +6,54 @@
 <title>ريماس للصحة والجمال</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
-
 * { box-sizing: border-box; margin:0; padding:0; }
-body {
-  font-family: 'Cairo', sans-serif;
-  background: #f9f9f9;
-  color: #004d40;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-header {
-  background-color: #008080cc;
-  padding: 15px 20px;
-  color: white;
-  text-align: center;
-}
+body { font-family: 'Cairo', sans-serif; background: #f9f9f9; color: #004d40; min-height: 100vh; display:flex; flex-direction:column; }
+
+header { background-color: #008080cc; padding: 15px 20px; color:white; text-align:center; }
 header img.logo { height:50px; margin-bottom:10px; border-radius:10px; }
 
-#banner {
-  position: relative;
-  width: 100%;
-  max-width: 1200px;
-  margin: 15px auto;
-  border-radius: 12px;
-  overflow: hidden;
-}
-.bannerImage {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-.bannerTextFixed {
-  background: rgba(0,0,0,0.4);
-  color: white;
-  font-weight: bold;
-  font-size: 16px;
-  text-align: center;
-  padding: 8px 12px;
-  border-radius: 8px;
-  line-height: 1.4;
-  margin-top: -5px;
-}
+#banner { position: relative; width:100%; max-width:1200px; margin:15px auto; border-radius:12px; overflow:hidden; }
+.bannerImage { width:100%; height:auto; display:block; }
+.bannerText { position:absolute; bottom:10px; left:50%; transform:translateX(-50%); color:white; font-weight:bold; font-size:20px; text-align:center; line-height:1.4; text-shadow: 0 0 8px rgba(255,255,255,0.9), 0 0 15px rgba(255,255,255,0.5); padding:5px 12px; border-radius:8px; }
 
-/* نص ثابت أسفل البانر */
-.bannerTextFixed span { margin:0 5px; }
+main { max-width:1200px; margin:10px auto; padding:10px; }
+h2 { text-align:center; margin:20px 0; color:#00695c; }
 
-main { max-width: 1200px; margin: 10px auto; padding: 10px; }
-h2 { text-align: center; margin: 20px 0; color:#00695c; }
-
-.grid {
-  display: grid;
-  gap: 15px;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-}
-.card {
-  background: #e0f2f1;
-  border-radius: 12px;
-  padding: 15px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 8px 20px rgba(0,128,128,0.4);
-}
+.grid { display:grid; gap:15px; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); }
+.card { background:#e0f2f1; border-radius:12px; padding:15px; box-shadow:0 4px 10px rgba(0,0,0,0.1); text-align:center; transition:transform 0.3s ease, box-shadow 0.3s ease; display:flex; flex-direction:column; justify-content:space-between; }
+.card:hover { transform:scale(1.03); box-shadow:0 8px 20px rgba(0,128,128,0.4); }
 .card img { width:100%; height:200px; object-fit:contain; margin-bottom:10px; border-radius:10px; background:#b2dfdbcc; }
-
-.card h3 { margin: 10px 0; font-size: 18px; }
-.card p.price { font-weight: bold; color: #00796b; font-size: 16px; }
+.card h3 { margin:10px 0; font-size:18px; }
+.card p.price { font-weight:bold; color:#00796b; font-size:16px; }
 input.quantity { width:60px; text-align:center; margin:10px 0; }
 button { border:none; padding:8px 12px; border-radius:5px; cursor:pointer; font-size:14px; margin:2px; }
-button.add { background-color: #008080; color:white; }
-button.add:hover { background-color: #004d40; }
+button.add { background-color:#008080; color:white; }
+button.add:hover { background-color:#004d40; }
 
-#cart { background: #b2dfdbcc; padding: 10px; border-radius: 12px; margin: 20px 0; overflow-x:auto; }
-#cart table { width:100%; border-collapse: collapse; min-width: 400px; }
+#cart { background:#b2dfdbcc; padding:10px; border-radius:12px; margin:20px 0; overflow-x:auto; }
+#cart table { width:100%; border-collapse: collapse; min-width:400px; }
 #cart th,#cart td { border:1px solid #004d40; padding:6px; text-align:center; font-size:14px; }
 #cart button.clearCart { background:#d32f2f; color:white; width:100%; margin-top:10px; }
 
-form.orderForm {
-  background:#e0f2f1;
-  padding:15px;
-  border-radius:12px;
-  margin-bottom:30px;
-}
+form.orderForm { background:#e0f2f1; padding:15px; border-radius:12px; margin-bottom:30px; }
 form.orderForm label { display:block; margin:8px 0 4px; }
-form.orderForm input, form.orderForm select {
-  width:100%; padding:8px; border-radius:5px; border:1px solid #004d40;
-}
-form.orderForm button {
-  margin-top:10px;
-  background:#25D366;
-  color:white;
-  width:100%;
-  font-size:16px;
-  font-weight:bold;
-}
+form.orderForm input, form.orderForm select { width:100%; padding:8px; border-radius:5px; border:1px solid #004d40; }
+form.orderForm button { margin-top:10px; background:#25D366; color:white; width:100%; font-size:16px; font-weight:bold; }
 
 .socials { text-align:center; margin:15px 0; font-weight:bold; }
-.socials a {
-  margin:0 10px;
-  text-decoration:none;
-  color:white;
-  background:#008080;
-  padding:8px 12px;
-  border-radius:5px;
-  transition:0.3s;
-}
+.socials a { margin:0 10px; text-decoration:none; color:white; background:#008080; padding:8px 12px; border-radius:5px; transition:0.3s; display:inline-flex; align-items:center; }
 .socials a:hover { background:#25D366; }
+.socials a img { height:20px; margin-left:6px; }
 
-#notify {
-  position:fixed; top:10px; left:50%;
-  transform:translateX(-50%);
-  background:#008080cc;
-  color:white; padding:10px 20px;
-  border-radius:8px; font-weight:bold;
-  display:none; z-index:1000;
-}
+#notify { position:fixed; top:10px; left:50%; transform:translateX(-50%); background:#008080cc; color:white; padding:10px 20px; border-radius:8px; font-weight:bold; display:none; z-index:1000; }
 
-footer {
-  text-align:center; 
-  padding:12px;
-  background-color: #008080cc;
-  color:white;
-  font-size:14px;
-}
+footer { text-align:center; padding:12px; background-color:#008080cc; color:white; font-size:14px; }
 
 @media (max-width:900px){ .grid{ grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); } }
 @media(max-width:600px){
   header img.logo{ height:40px; }
   header h1{ font-size:18px; }
-  .bannerTextFixed{ font-size:14px; padding:5px 8px; }
+  .bannerText{ font-size:16px; padding:5px 8px; bottom:5px; }
   .card{padding:10px;}
   .card h3{font-size:16px;}
   .card p.price{font-size:14px;}
@@ -156,12 +68,10 @@ footer {
   <h1>ريماس للصحة والجمال</h1>
 </header>
 
-<!-- بانر -->
 <div id="banner">
   <img src="https://i.imgur.com/amF0F7w.png" alt="بانر ريماس" class="bannerImage" />
-  <div class="bannerTextFixed">
-    ✅ التخلص من القمل والبيوض بجلسة واحدة | 🌿 منتجات طبيعية وآمنة<br>
-    🛡️ المشط المغناطيسي يدوم طول العمر | مناسب لكل أفراد العائلة
+  <div class="bannerText">
+    التخلص من القمل والبيوض بجلسة واحدة ⚡ منتجات طبيعية وآمنة ✅ حماية وعلاج كامل لجميع أفراد العائلة
   </div>
 </div>
 
@@ -275,11 +185,10 @@ footer {
 
 <div class="socials">
   <a href="https://www.tiktok.com/@rimas_beauty.co" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/TikTok_logo.svg" style="height:24px; vertical-align:middle; margin-right:5px;">تيك توك
+    تيك توك
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/TikTok_logo.png" alt="TikTok"/>
   </a>
-  <a href="https://www.instagram.com/remas_beauty1" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" style="height:24px; vertical-align:middle; margin-right:5px;">إنستغرام
-  </a>
+  <a href="https://www.instagram.com/remas_beauty1" target="_blank">إنستغرام</a>
 </div>
 
 </main>
@@ -295,12 +204,11 @@ const soundRemove=new Audio('https://actions.google.com/sounds/v1/cart/cart_remo
 const soundUpdate=new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg');
 
 function showNotify(msg){const n=document.getElementById('notify'); n.textContent=msg; n.style.display='block'; setTimeout(()=>{n.style.display='none';},1500);}
-
 function addToCart(name,price,btn){const quantity=parseInt(btn.previousElementSibling.value);if(isNaN(quantity)||quantity<1)return alert("الكمية غير صالحة");const existing=cartItems.find(i=>i.name===name);if(existing)existing.quantity+=quantity;else cartItems.push({name,price,quantity});updateCartTable();soundAdd.play();btn.previousElementSibling.value=1;}
-
 function updateCartTable(){
   const tbody=document.querySelector('#cartTable tbody'); tbody.innerHTML=''; let total=0;
-  cartItems.forEach((item,index)=>{ const row=document.createElement('tr');
+  cartItems.forEach((item,index)=>{
+    const row=document.createElement('tr');
     row.innerHTML=`<td>${item.name}</td>
       <td><input type="number" min="1" value="${item.quantity}" onchange="updateQuantity(${index}, this.value)"/></td>
       <td>${item.price*item.quantity} د.ع</td>
@@ -312,7 +220,6 @@ function updateCartTable(){
   document.getElementById('total').textContent=total;
   localStorage.setItem('cart',JSON.stringify(cartItems));
 }
-
 function removeItem(index){cartItems.splice(index,1);updateCartTable();soundRemove.play();}
 function updateQuantity(index,newQty){newQty=parseInt(newQty);if(isNaN(newQty)||newQty<1)return alert("الكمية غير صالحة");cartItems[index].quantity=newQty;updateCartTable();soundUpdate.play();}
 function clearCart(){cartItems=[]; updateCartTable();}
