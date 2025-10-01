@@ -117,6 +117,7 @@ footer { text-align:center; padding:12px; background-color: #008080cc; color:whi
   <h1>ريماس للصحة والجمال</h1>
 </header>
 
+<!-- استعادة البانر السابق -->
 <div id="banner">
   <img src="https://i.imgur.com/amF0F7w.png" alt="بانر ريماس" class="bannerImage" />
   <div class="bannerText">
@@ -294,12 +295,12 @@ function sendOrder(e){
   const total=document.getElementById('total').textContent;
   message+=`\nالمجموع الكلي: ${total} د.ع`;
   
-  // ارسال الطلب دائمًا إلى رقمك الشخصي
   const waLink=`https://wa.me/9647881556110?text=${encodeURIComponent(message)}`;
   window.open(waLink,'_blank');
 }
 
 updateCartTable();
 </script>
+
 </body>
 </html>
