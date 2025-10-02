@@ -323,6 +323,7 @@ function updateCartTable(){
 function removeItem(index){cartItems.splice(index,1);updateCartTable();soundRemove.play();}
 function updateQuantity(index,newQty){newQty=parseInt(newQty);if(isNaN(newQty)||newQty<1)return alert("الكمية غير صالحة");cartItems[index].quantity=newQty;updateCartTable();soundUpdate.play();}
 function clearCart(){cartItems=[]; updateCartTable();}
+
 function sendOrder(e){
   e.preventDefault();
   if(cartItems.length===0){ alert("السلة فارغة"); return; }
@@ -336,10 +337,13 @@ function sendOrder(e){
   cartItems.forEach(i=>{ message+=`- ${i.name} x ${i.quantity} = ${i.price*i.quantity} د.ع\n`; });
   const total=document.getElementById('total').textContent;
   message+=`\nالمجموع الكلي: ${total} د.ع`;
-  
-  const waLink=`https://wa.me/964${phone.replace(/^0/,'')}?text=${encodeURIComponent(message)}`;
+
+  // رقم المتجر الثابت
+  const storePhone = "07881556110"; // ضع هنا رقم متجرك
+  const waLink=`https://wa.me/964${storePhone.replace(/^0/,'')}?text=${encodeURIComponent(message)}`;
   window.open(waLink,'_blank');
 }
+
 updateCartTable();
 </script>
 
